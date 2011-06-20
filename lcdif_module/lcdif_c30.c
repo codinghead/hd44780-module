@@ -22,7 +22,7 @@
 
 /*******************************************************************************
 *
-*                                LCDIFC18 MODULE
+*                                LCDIFC30 MODULE
 *
 *******************************************************************************/
 
@@ -1259,7 +1259,7 @@ unsigned char lcdif4BitFunctionSet(HLCDIF const hLcdIf,
 *******************************************************************************/
 unsigned char lcdifGetPbBusWidth(HLCDIF const hLcdIf)
 {
-    if (hLcdIf->lcdIfFlags && LCDIF_PBWIDTH4BITS)
+    if (hLcdIf->lcdIfFlags & LCDIF_PBWIDTH4BITS)
     {
         return BUS4BITSWIDE;
     }
@@ -1269,6 +1269,41 @@ unsigned char lcdifGetPbBusWidth(HLCDIF const hLcdIf)
     }
 }
 
+
+/*******************************************************************************
+* lcdifFixNibbleSwap()
+*
+* Summary: 
+*   For use with an LCDIF that has been opened. During development it was noted 
+*   that some LCD modules returned the nibbles of data during a "ReadAddress"
+*   in the reverse order to that defined in the datasheet or during a "ReadData"
+*   command. Calling this function ensures that "ReadAddress" commands work 
+*   correctly with such LCD module.
+*   If, when using the HD44780 Module, you cannot write more than eight 
+*   characters to the LCD display, you probably have an LCD display with this
+*   nibble-swap issue.
+*
+* See also:
+*   None
+*
+* Arguments: 
+*   hLcdIf          - handle to the open LCD interface
+*
+* Returns: 
+*   None
+*
+* Callers: 
+*   User application
+*
+* Notes : 
+* 1. Caller must have 'created' at least one LCD interface object before
+*    calling this function
+*******************************************************************************/
+void lcdifFixNibbleSwap(HLCDIF const hLcdIf)
+{
+    hLcdIf->lcdIfFlags |= LCDIF_FIXNIBBLESWAP;
+}
+    
 
 /*******************************************************************************
 *
