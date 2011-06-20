@@ -35,9 +35,13 @@
 *                                 INCLUDE FILES
 *******************************************************************************/
 #include "HD44780.h"
-#include "lcdif_c18.h"
-#include "pbif_c18.h"
-
+#if defined (__18CXX)
+    #include "lcdif_c18.h"
+    #include "pbif_c18.h"
+#elif defined (__PIC32MX__)
+    #include "lcdif_c32.h"
+    #include "pbif_c32.h"
+#endif
 /*******************************************************************************
 *                                 LOCAL DEFINES
 *******************************************************************************/
