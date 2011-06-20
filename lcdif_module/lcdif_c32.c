@@ -11,12 +11,12 @@
 * module
 *
 * Filename : lcdif_c32.c
+* 
 * Programmer(s) : Stuart Cording aka. CODINGHEAD
 * 
 ********************************************************************************
 * Note(s) : 
-*
-*
+* 
 *******************************************************************************/
 
 /*******************************************************************************
@@ -55,6 +55,13 @@
 
 /*******************************************************************************
 * Summary:
+*   Used to indicate that this LCD module swaps the high/low nibble in 4-bit bus
+* mode when reading, and the driver should correct this
+*******************************************************************************/
+#define LCDIF_FIXNIBBLESWAP (0x01 << 4)
+
+/*******************************************************************************
+* Summary:
 *   Used to mask the bitShiftData information in flags (lowest three bits)
 *******************************************************************************/
 #define LCDIF_SHIFTDATAMASK (0x07)
@@ -68,21 +75,17 @@
 *            will use an atomic bit test & set to indicate the bus is in use and
 *            not a subtraction as is used for the PIC18
 *******************************************************************************/
-#if defined(__18CXX)
-#define PBIF_NOT_BUSY       0x01;
-#else
 #define PBIF_NOT_BUSY       0x00;
-#endif
 
 /*******************************************************************************
 * Summary:
-*   Used to indicate that the LCD interface is in use from another task
+* Used to indicate that the LCD interface is in use from another task
 *******************************************************************************/
 #define LCDIF_BUSY          0;
 
 /*******************************************************************************
 * Summary:
-*   Used to indicate that the LCD interface call was successful
+* Used to indicate that the LCD interface call was successful
 *******************************************************************************/
 #define LCDIF_SUCCESS       1;
 
@@ -107,19 +110,19 @@
 
 /*******************************************************************************
 * Summary:
-*   Local pointer to a linked list of LCD intrface objects
+* Local pointer to a linked list of LCD intrface objects
 *******************************************************************************/
 static LCDIFOBJ * startOfLcdIfObjs;
 
 /*******************************************************************************
 * Summary:
-*   Used to note how many LCD interface objects are active. Each bit in this
+* Used to note how many LCD interface objects are active. Each bit in this
 * variable relates to one active object.
 *******************************************************************************/
 static unsigned int activeLcdIfObjects;
 
 /*******************************************************************************
-*                             LOCAL FUNCTION PROTOTYPES
+*#X#                          LOCAL FUNCTION PROTOTYPES
 *******************************************************************************/
                                         /* These functions are implemented in */
                                         /* assembly code and hence are        */
@@ -147,7 +150,7 @@ extern void             pbifReturnBusMutex(unsigned int * pbIfFlag);
 * lcdifInit()
 *
 * Summary: 
-*   Initialises the LCDIFC32 module for first use
+*   Deinitialises the LCDIFC32 module after use
 *
 * See also:
 *   lcdifDeinit()
@@ -398,21 +401,45 @@ LCDIFNUM lcdifCreate(LCDIFOBJ * const lcdIfObj)
             localLcdIfObj = startOfLcdIfObjs;
             startOfLcdIfObjs = lcdIfObj;
             startOfLcdIfObjs->nextLcdIfObj = localLcdIfObj;
+                                        /* Clear the object's flags           */
+            startOfLcdIfObjs->lcdIfFlags = 0;
+                                        /* Note parallel bus width - if it is */
+                                        /* not 4 it must be 8                 */
+                                        /* Also note amount to shift data to  */
+                                        /* use on the bus                     */
+            if (busWidth == 4)
+            {
+                startOfLcdIfObjs->lcdIfFlags |= LCDIF_PBWIDTH4BITS;
+                startOfLcdIfObjs->lcdIfFlags |= (busDataShift & 
+                                                        LCDIF_SHIFTDATAMASK);
+            }
+                                        /* Note that the parallel bus is not  */
+                                        /* in use                             */
+            startOfLcdIfObjs->pbIfObject->mutex = PBIF_NOT_BUSY;
+            
                                         /* Find a free LCD interface number   */
                                         /* for this interface                 */
-            for (interfaceNumber = 0x0002; interfaceNumber == 0x0000; 
-                    interfaceNumber <<= 1)
+                                        /* Interface '1' is already assigned  */
+                                        /* if we're here. Start looking from  */
+                                        /* interface '2'                      */
+            interfaceNumber = 0x0002;
+            
+            do
             {
-                if (!activeLcdIfObjects & interfaceNumber)
+                if (!(activeLcdIfObjects & interfaceNumber))
                 {
                                         /* Assign the interface number        */
                     activeLcdIfObjects |= interfaceNumber;
                     startOfLcdIfObjs->lcdIfNum = interfaceNumber;
-                                        /* Clear the object's flags           */
-                    startOfLcdIfObjs->lcdIfFlags = 0;
                     return startOfLcdIfObjs->lcdIfNum;
-                }    
-            }    
+                } 
+                                        /* That wasn't free; try next bit     */
+                                        /* position                           */
+                interfaceNumber <<= 1;
+                                        /* Just in case unsigned int is not   */
+                                        /* 16-bits, mask it off               */
+                interfaceNumber &= 0xFFFF;   
+            } while(interfaceNumber != 0);
         }
     }
 cannot_create_if:
@@ -629,11 +656,14 @@ LCDIFNUM lcdifClose(HLCDIF const hLcdIf)
                                         /* interface number                   */
             return hLcdIf->lcdIfNum;
         }
-    }
                                         /* Otherwise return 0 to say that     */
                                         /* buffer object wasn't open          */
-    return (LCDIFNUM) 0;
-}    
+        else
+        {
+            return (LCDIFNUM) 0;
+        }
+    }
+}
 
 /*******************************************************************************
 * lcdifGetPb()
@@ -657,11 +687,11 @@ LCDIFNUM lcdifClose(HLCDIF const hLcdIf)
 * Notes : 
 * 1. Caller must have 'created' at least one LCD interface object before
 *    calling this function
-* $$$$ This function always always succeeds for now
+*  $$$$ This function always always succeeds for now
 *******************************************************************************/
 unsigned char lcdifGetPb(HLCDIF const hLcdIf)
 {
-    return 1;
+       return 1;
 #if 0
                                         /* Attempt to get the peripheral bus  */
                                         /* for this hLcdIf object             */
@@ -677,9 +707,10 @@ unsigned char lcdifGetPb(HLCDIF const hLcdIf)
     {
                                         /* If we failed in our attempt,       */
                                         /* return 0                           */
-        return 0;   
+        return 0;
     }
 #endif
+
 }    
 
 /*******************************************************************************
@@ -703,7 +734,7 @@ unsigned char lcdifGetPb(HLCDIF const hLcdIf)
 * Notes : 
 * 1. Caller must have 'created' at least one LCD interface object before
 *    calling this function
-* $$$$ This function always always succeeds for now
+*  $$$$ This function always always succeeds for now
 *******************************************************************************/
 void lcdifReturnPb(HLCDIF const hLcdIf)
 {
@@ -852,11 +883,12 @@ unsigned char lcdifWriteData(HLCDIF const hLcdIf, unsigned char data)
 *    PORT pins being used for data output are left as outputs. The only rule is 
 *    to leave the ENABLE pin low when finished
 * 3. You must have called lcdifGetPb() successfully before calling this function
+*    to use it. If you didn't this function will return LCDIF_BUSY.
 *******************************************************************************/
 unsigned char lcdifReadData(HLCDIF const hLcdIf, unsigned char * const data)
 {
-    unsigned char tempData;
-    unsigned char tempData2;
+    unsigned char tempData = 0;
+    unsigned char tempData2 = 0;
                                         /* Check if we own the peripheral bus */
     if (hLcdIf->lcdIfFlags && LCDIF_OWNPB)
     {   
@@ -896,7 +928,7 @@ unsigned char lcdifReadData(HLCDIF const hLcdIf, unsigned char * const data)
                                         /* Formulate whole data byte          */
             tempData += tempData2;
                                         /* Give value read back to caller     */
-            * data = tempData;          
+            *data = tempData;    
                                         /* Clear E pin                        */
             *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
                                         /* Read data process finished         */
@@ -1075,8 +1107,8 @@ unsigned char lcdifWriteInstruction(HLCDIF const hLcdIf,
 unsigned char lcdifReadAddress(HLCDIF const hLcdIf, 
                       unsigned char * const address)
 {
-    unsigned char tempAddress;
-    unsigned char tempAddress2;
+    unsigned char tempAddress = 0;
+    unsigned char tempAddress2 = 0;
                                         /* Check if we own the peripheral bus */
     if (hLcdIf->lcdIfFlags && LCDIF_OWNPB)
     {   
@@ -1104,9 +1136,14 @@ unsigned char lcdifReadAddress(HLCDIF const hLcdIf,
             tempAddress >>= startOfLcdIfObjs->lcdIfFlags & LCDIF_SHIFTDATAMASK;
                                         /* Clear E pin                        */
             *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
-                                        /* Shift address into high nibble of  */
+                                        /* Check to see if nibbles need to be */
+                                        /* swapped                            */
+            if (!(hLcdIf->lcdIfFlags & LCDIF_FIXNIBBLESWAP))
+            {
+                                        /* Shift data into high nibble of     */
                                         /* tempAddress                        */
-            tempAddress <<= 4;
+                tempAddress <<= 4;
+            }
                                         /* Set E pin                          */
             *hLcdIf->E_LAT |= hLcdIf->E_BIT;
                                         /* Read low nibble of data and add    */
@@ -1116,11 +1153,23 @@ unsigned char lcdifReadAddress(HLCDIF const hLcdIf,
             tempAddress2 >>= startOfLcdIfObjs->lcdIfFlags & LCDIF_SHIFTDATAMASK;
                                         /* Clear E pin                        */
             *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            if (!(hLcdIf->lcdIfFlags & LCDIF_FIXNIBBLESWAP))
+            {
                                         /* Formulate whole address            */
-            tempAddress += tempAddress2;
+                tempAddress += tempAddress2;
                                         /* Return address to caller           */
-            *address = tempAddress;
-                                        /* Read data process finished         */
+                *address = tempAddress;          
+            }
+            else
+            {
+                                        /* Formulate whole address but        */
+                                        /* nibble swapped                     */
+                tempAddress2 <<= 4;
+                tempAddress2 += tempAddress;
+                                        /* Give value read back to caller     */
+                *address = tempAddress2;       
+            }
+                                        /* Read address process finished      */
         }
         else
         {
@@ -1276,6 +1325,7 @@ unsigned char lcdifGetPbBusWidth(HLCDIF const hLcdIf)
     }
 }
 
+
 /*******************************************************************************
 * lcdifFixNibbleSwap()
 *
@@ -1309,8 +1359,8 @@ void lcdifFixNibbleSwap(HLCDIF const hLcdIf)
 {
     hLcdIf->lcdIfFlags |= LCDIF_FIXNIBBLESWAP;
 }
-    
-
+   
+ 
 /*******************************************************************************
 *
 *                               LCDIFC32 MODULE END
