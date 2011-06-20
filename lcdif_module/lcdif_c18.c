@@ -1356,7 +1356,8 @@ void lcdifFixNibbleSwap(HLCDIF const hLcdIf)
 {
     hLcdIf->lcdIfFlags |= LCDIF_FIXNIBBLESWAP;
 }
-    
+   
+ 
 /*******************************************************************************
 *
 *                               LCDIF MODULE END
