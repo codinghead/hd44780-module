@@ -124,8 +124,11 @@ static unsigned int activeLcdIfObjects;
                                         /* These functions are implemented in */
                                         /* assembly code and hence are        */
                                         /* defined as extern                  */
+/* $$$$ These functions are temporarily ignored for test purposes.            */
+#if 0
 extern unsigned char    pbifGetBusMutex(unsigned int * pbIfFlag);
 extern void             pbifReturnBusMutex(unsigned int * pbIfFlag);
+#endif
 
 
 /*******************************************************************************
@@ -232,13 +235,13 @@ LCDIFNUM lcdifCreate(LCDIFOBJ * const lcdIfObj)
     unsigned int  interfaceNumber = 0x0001;      
                                         /* Used to calculate the interface    */
                                         /* number to return to caller         */
-    unsigned char bitTest;
-    unsigned char bitCount;
+    unsigned short bitTest;
+    unsigned short bitCount;
                                         /* Used to note bus width             */
-    unsigned char busWidth;
+    unsigned short busWidth;
                                         /* Used to note how many bits to      */
                                         /* shift bus data                     */
-    unsigned char busDataShift;
+    unsigned short busDataShift;
                                         /* Check we got an object to point to */
     if(lcdIfObj != (LCDIFOBJ *) 0)
     {
@@ -654,10 +657,12 @@ LCDIFNUM lcdifClose(HLCDIF const hLcdIf)
 * Notes : 
 * 1. Caller must have 'created' at least one LCD interface object before
 *    calling this function
-*
+* $$$$ This function always always succeeds for now
 *******************************************************************************/
 unsigned char lcdifGetPb(HLCDIF const hLcdIf)
 {
+    return 1;
+#if 0
                                         /* Attempt to get the peripheral bus  */
                                         /* for this hLcdIf object             */
     if (pbifGetBusMutex(&hLcdIf->pbIfObject->mutex))
@@ -673,7 +678,8 @@ unsigned char lcdifGetPb(HLCDIF const hLcdIf)
                                         /* If we failed in our attempt,       */
                                         /* return 0                           */
         return 0;   
-    }        
+    }
+#endif
 }    
 
 /*******************************************************************************
@@ -697,15 +703,17 @@ unsigned char lcdifGetPb(HLCDIF const hLcdIf)
 * Notes : 
 * 1. Caller must have 'created' at least one LCD interface object before
 *    calling this function
-*
+* $$$$ This function always always succeeds for now
 *******************************************************************************/
 void lcdifReturnPb(HLCDIF const hLcdIf)
 {
+#if 0
                                         /* Return the peripheral bus          */
     pbifReturnBusMutex(&hLcdIf->pbIfObject->mutex);
                                         /* Note this in the LCD interface's   */
                                         /* flags variable                     */
     hLcdIf->lcdIfFlags &= ~LCDIF_OWNPB;
+#endif
 }    
 
 /*******************************************************************************
