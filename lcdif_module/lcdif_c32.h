@@ -1,6 +1,6 @@
 /*******************************************************************************
 *
-* LCD INTERFACE MODULE FOR C18 COMPILER AND PIC18
+* LCD INTERFACE MODULE FOR C32 COMPILER AND PIC32
 *
 *******************************************************************************/
 
@@ -14,7 +14,7 @@
 * this file as the basis for a port.
 * All contents within this file are 'public' and to be used by end user
 *
-* Filename : lcdif_c18.h
+* Filename : lcdif_c32.h
 * Version : V0.01
 * Programmer(s) : Stuart Cording aka. CODINGHEAD 
 * 
@@ -27,44 +27,24 @@
 
 /*******************************************************************************
 *
-*                                LCDIFC18 MODULE
+*                                LCDIFC32 MODULE
 *
 *******************************************************************************/
 
-#ifndef __LCDIFC30_MODULE_PRESENT__
-#define __LCDIFC30_MODULE_PRESENT__
+#ifndef __LCDIFC32_MODULE_PRESENT__
+#define __LCDIFC32_MODULE_PRESENT__
 
 /*******************************************************************************
 *                                 INCLUDE FILES
 *******************************************************************************/
                                     /******************************************/
-                                    /* Microchip C30 compiler                 */
+                                    /* Microchip C32 compiler                 */
                                     /******************************************/
-#if defined(__PIC24F__)
-	// PIC24F processor
-	#include <p24Fxxxx.h>
-                                    /******************************************/
-                                    /* Microchip C30 compiler                 */
-                                    /******************************************/
-#elif defined(__PIC24H__)
-	// PIC24H processor
-	#include <p24Hxxxx.h>
-                                    /******************************************/
-                                    /* Microchip C30 compiler                 */
-                                    /******************************************/
-#elif defined(__dsPIC33F__)
-	// dsPIC33F processor
-	#include <p33Fxxxx.h>
-                                    /******************************************/
-                                    /* Microchip C30 compiler                 */
-                                    /******************************************/
-#elif defined(__dsPIC30F__)
-	// dsPIC30F processor
-	#include <p30fxxxx.h>
+#if defined(__PIC32MX__)
+	// PIC32 processor
+	#include <p32xxxx.h>
 #endif
-
-#include <pbif_c30.h>
-
+#include "pbif_c32.h"
 
 /*******************************************************************************
 *                                    EXTERNS
@@ -165,8 +145,8 @@ unsigned char   lcdifGetPbBusWidth(HLCDIF         const hLcdIf);
 /*******************************************************************************
 *                              CONFIGURATION ERRORS
 *******************************************************************************/
-#ifndef __C30
-#error This module requires the use of the C30 compiler.
+#ifndef __PIC32MX__
+#error This module requires the use of the C32 compiler.
 #error If you wish to use this code with another platform, search in the 
 #error directory where you found this file for a possible port.
 #error This file is currently saved here: __FILE__

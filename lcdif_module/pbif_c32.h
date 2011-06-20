@@ -45,7 +45,7 @@
 #if defined(__PIC32MX__)
 	// PIC32 processor
 	#include <p32xxxx.h>
-
+#endif
 
 /*******************************************************************************
 *                                    EXTERNS
