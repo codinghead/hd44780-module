@@ -31,7 +31,13 @@
 /*******************************************************************************
 *                                 INCLUDE FILES
 *******************************************************************************/
-#include "lcdif_c18.h"
+#if defined(__18CXX)
+    #include "lcdif_c18.h"
+#elif defined (__PIC32MX__)
+    #include "lcdif_c32.h"
+#else
+    #error This processor family or toolchain is not currently supported
+#endif
 
 
 /*******************************************************************************
