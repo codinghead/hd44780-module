@@ -73,13 +73,13 @@
 *******************************************************************************/
 typedef struct PBIFOBJTYPE {
     volatile unsigned int         * RW_LAT;
-    unsigned char				    RW_BIT;
+    unsigned int                    RW_BIT;
     volatile unsigned int         * RS_LAT;
-    unsigned char				    RS_BIT;
+    unsigned int                    RS_BIT;
     volatile unsigned int         * DATA_LAT;
     volatile unsigned int         * DATA_PORT;
     volatile unsigned int         * DATA_TRIS;
-    unsigned char				    DATA_MASK;
+    unsigned int                    DATA_MASK;
     unsigned int                    mutex;
 } PBIFOBJ;
 

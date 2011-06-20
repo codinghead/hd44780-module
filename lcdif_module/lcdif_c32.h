@@ -87,7 +87,7 @@ typedef unsigned int LCDIFNUM;
 *******************************************************************************/
 typedef struct LCDIFOBJTYPE {
     volatile unsigned int         * E_LAT;
-    unsigned char                   E_BIT;
+    unsigned int                    E_BIT;
     PBIFOBJ                       * pbIfObject;
     LCDIFNUM                        lcdIfNum;
     unsigned char                   lcdIfFlags;
