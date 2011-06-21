@@ -86,8 +86,7 @@ typedef unsigned int LCDIFNUM;
 *   Holds the object information for each LCD interface object created
 *******************************************************************************/
 typedef struct LCDIFOBJTYPE {
-    volatile unsigned int         * E_LAT;
-    unsigned int                    E_BIT;
+    PBIFLCDENOBJ                  * pbIfLcdEnObject;
     PBIFOBJ                       * pbIfObject;
     LCDIFNUM                        lcdIfNum;
     unsigned char                   lcdIfFlags;
@@ -155,7 +154,7 @@ unsigned char   lcdifGetPbBusWidth(HLCDIF         const hLcdIf);
 
 /*******************************************************************************
 *
-*                               LCDIFC18 MODULE END
+*                               LCDIFC32 MODULE END
 *
 *******************************************************************************/
 #endif
