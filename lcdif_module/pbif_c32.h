@@ -69,7 +69,18 @@
 /*******************************************************************************
 * New data type PBIFOBJ                                                    
 * Description:
-*   This decribes the object for the parallel bus interface
+*   This decribes the object for the parallel bus interface. It requires the
+* following elements:
+* - The LAT register to which the R/W pin is connected
+* - The bit number to which the R/W pin is connected (counting up from 0)
+* - The LAT register to which the RS pin is connected
+* - The bit number to which the RS pin is connected (counting up from 0)
+* - The LAT register to which the data pins are connected
+* - The PORT register to which the data pins are connected
+* - The TRIS register to which the data pins are connected
+* - A mask of 4 or 8 bits to define which of the data pins from the GPIO port
+*   are connected to the LCD interface (must be consecutive)
+* - A mutex variable used by the LCDIF module only
 *******************************************************************************/
 typedef struct PBIFOBJTYPE {
     volatile unsigned int         * RW_LAT;
@@ -82,6 +93,19 @@ typedef struct PBIFOBJTYPE {
     unsigned int                    DATA_MASK;
     unsigned int                    mutex;
 } PBIFOBJ;
+
+/*******************************************************************************
+* New data type PBIFLCDENOBJ
+* Description:
+*   This decribes the object for the enable pin for an individual LCD interdace
+* It requires the following elements:
+* - The LAT register to which the EN pin is connected
+* - The bit number to which the EN pin is connected (counting up from 0)
+*******************************************************************************/
+typedef struct PBIFLCDENOBJTYPE {
+    volatile unsigned int         * EN_LAT;
+    unsigned int                    EN_BIT;
+} PBIFLCDENOBJ;
 
 
 /*******************************************************************************
