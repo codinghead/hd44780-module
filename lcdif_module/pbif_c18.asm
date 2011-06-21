@@ -96,7 +96,7 @@
 ; used by the compiler. An indirect file pointer (FSRx) is needed because we
 ; receive the address of the variable we need to use for our mutex here, rather
 ; than the content of that variable. To ensure that this function cannot be 
-; interrupted, we switch of interrupts (if enabled), check the mutex, note the
+; interrupted, we switch off interrupts (if enabled), check the mutex, note the
 ; result to return to the caller, and re-enable interrupts (if enabled). This 
 ; ensures that, for the C environment, the use of the FSR registers goes 
 ; unnoticed.
