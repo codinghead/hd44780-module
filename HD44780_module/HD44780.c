@@ -14,6 +14,7 @@
 * Sitronix ST7066U
 * Samsung S6A0069
 * Samsung KS0066U
+* Novatek NT7603
 *
 * Filename : HD44780.c
 * Version : V0.01
@@ -1177,7 +1178,7 @@ unsigned char hd44780ReadChar(HHD44780 const hHd44780, unsigned char * data)
 *    calling this function
 *
 *******************************************************************************/
-unsigned char * hd44780WriteRAMString(HHD44780 const   hHd44780, 
+const unsigned char * hd44780WriteRAMString(HHD44780 const   hHd44780,
                                  const unsigned char * string)
 {
                                         /* Check LCD interface is actually    */
@@ -1211,7 +1212,7 @@ unsigned char * hd44780WriteRAMString(HHD44780 const   hHd44780,
     }
                                         /* Return string if we couldn't do    */
                                         /* anything                           */
-    return string;    
+    return string;
 }    
 
 /*******************************************************************************
@@ -1243,7 +1244,7 @@ unsigned char * hd44780WriteRAMString(HHD44780 const   hHd44780,
 * 2. Caller must have set a CGRAM address before using this function
 *
 *******************************************************************************/
-unsigned char * hd44780WriteCGRAM(HHD44780 const hHd44780, 
+const unsigned char * hd44780WriteCGRAM(HHD44780 const hHd44780,
                          const unsigned char * character,
                                  unsigned char font)
 {
@@ -1279,7 +1280,7 @@ unsigned char * hd44780WriteCGRAM(HHD44780 const hHd44780,
     }
                                         /* Return string if we couldn't do    */
                                         /* anything                           */
-    return character;    
+    return character;
 }    
 
 /*******************************************************************************
@@ -1343,7 +1344,7 @@ unsigned int hd44780InstructionInit(HHD44780 const  hHd44780,
                                         /* Wait >15ms                         */
                     returnValue = 15000;
                 }
-                else if (hd44780Clone == KS0066U)
+                else if (hd44780Clone == KS0066U || hd44780Clone == NT7603)
                 {
                                         /* Wait >30ms                         */
                     returnValue = 30000;   
@@ -1439,14 +1440,24 @@ unsigned int hd44780InstructionInit(HHD44780 const  hHd44780,
                             hHd44780->hd44780Flags |= FUNCTIONSET2;
                         }
                         else if ((hd44780Clone == KS0066U) ||
-                                 (hd44780Clone == S6A0069))
+                                 (hd44780Clone == S6A0069) ||
+                                 (hd44780Clone == NT7603))
                         {
                                         /* Send a function set command        */
                             hHd44780->lcdIfFunctionPointers->pWriteInstr(
                                              hHd44780->hLcdIf, 
                                              HD44780_FUNCTIONSET & functionSet);
-                                        /* Wait further 39us */
-                            returnValue = 39;
+                                        
+                            if (hd44780Clone == NT7603)
+                            {
+                                        /* Wait further 39us                  */
+                                returnValue = 40;
+                            }
+                            else
+                            {
+                                        /* Wait further 39us                  */
+                                returnValue = 39;
+                            }
                                         /* Set up next state                  */
                             hHd44780->hd44780Flags &= ~HD44780_INSTRINITSTATE;
                             hHd44780->hd44780Flags |= DISPLAYONOFFCONTROL;
@@ -1755,22 +1766,31 @@ unsigned int hd44780InstructionInit(HHD44780 const  hHd44780,
                         }    
                     }
                     else if ((hd44780Clone == KS0066U) || 
-                             (hd44780Clone == S6A0069))
+                             (hd44780Clone == S6A0069) ||
+                             (hd44780Clone == NT7603))
                     {
                         hHd44780->lcdIfFunctionPointers->pWriteInstr(
                                                    hHd44780->hLcdIf,
                                                    HD44780_DISPLAYONOFFCONTROL &
                                                    displayOnOffControl);
                                         /* Set up next state                  */
-                                hHd44780->hd44780Flags &= 
-                                                        ~HD44780_INSTRINITSTATE;
-                                hHd44780->hd44780Flags |= DISPLAYCLEAR;
-                                        /* Wait further 39us */
+                        hHd44780->hd44780Flags &= ~HD44780_INSTRINITSTATE;
+                        hHd44780->hd44780Flags |= DISPLAYCLEAR;
+
+                        if (hd44780Clone == NT7603)
+                        {
+                                        /* Wait further 40us                  */
+                            returnValue = 40;
+                        }
+                        else
+                        {
+                                        /* Wait further 39us                  */
                             returnValue = 39;
-                    }
+                        }
                                         /* Return the bus                     */
-                    hHd44780->lcdIfFunctionPointers->pReturnBus(
+                        hHd44780->lcdIfFunctionPointers->pReturnBus(
                                                               hHd44780->hLcdIf);
+                    }
                 }
                                         /* If we couldn't get the bus, return */
                                         /* 1 so we get called again           */
@@ -1822,7 +1842,8 @@ unsigned int hd44780InstructionInit(HHD44780 const  hHd44780,
                         }
                     }
                     else if (hd44780Clone == KS0066U || 
-                             hd44780Clone == S6A0069)
+                             hd44780Clone == S6A0069 ||
+                             hd44780Clone == NT7603)
                     {
                         hHd44780->lcdIfFunctionPointers->pWriteInstr(
                                                           hHd44780->hLcdIf,
@@ -1830,8 +1851,17 @@ unsigned int hd44780InstructionInit(HHD44780 const  hHd44780,
                                         /* Set up next state                  */
                         hHd44780->hd44780Flags &= ~HD44780_INSTRINITSTATE;
                         hHd44780->hd44780Flags |= ENTRYMODESET;                       
+                                        
+                        if (hd44780Clone == NT7603)
+                        {
+                                        /* Call again in 1.64ms or more       */
+                            returnValue = 1640;
+                        }
+                        else
+                        {
                                         /* Call again in 1.53ms or more       */
-                        returnValue = 1530;
+                            returnValue = 1530;
+                        }
                     }    
 
                                         /* Return the bus                     */
@@ -1891,7 +1921,8 @@ unsigned int hd44780InstructionInit(HHD44780 const  hHd44780,
                         }
                     }
                     else if (hd44780Clone == KS0066U || 
-                             hd44780Clone == S6A0069)
+                             hd44780Clone == S6A0069 ||
+                             hd44780Clone == NT7603)
                     {
                         hHd44780->lcdIfFunctionPointers->pWriteInstr(
                                                           hHd44780->hLcdIf,

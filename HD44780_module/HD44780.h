@@ -164,7 +164,9 @@ typedef enum HD44780CLONETYPE
                                         /* Samsung S6A0069                    */
     S6A0069,
                                         /* Samsung KS0066U                    */
-    KS0066U
+    KS0066U,
+                                        /* Novatek NT7603                     */
+    NT7603
 } HD44780CLONE;    
 
 
@@ -221,9 +223,9 @@ unsigned char       hd44780WriteChar(HHD44780 const        hHd44780,
                                           unsigned char    data);
 unsigned char       hd44780ReadChar(HHD44780 const        hHd44780,
                                           unsigned char *   data);
-unsigned char *     hd44780WriteRAMString(HHD44780 const        hHd44780,
+const unsigned char *     hd44780WriteRAMString(HHD44780 const        hHd44780,
                                           const unsigned char * string);
-unsigned char *     hd44780WriteCGRAM(HHD44780 const        hHd44780,
+const unsigned char *     hd44780WriteCGRAM(HHD44780 const        hHd44780,
                                           const unsigned char *   character,
                                           unsigned char     font);
 unsigned char       hd44780ReadCGRAM(HHD44780 const        hHd44780,
