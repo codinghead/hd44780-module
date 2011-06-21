@@ -252,14 +252,14 @@ LCDIFNUM lcdifCreate(LCDIFOBJ * const lcdIfObj)
                                         /* information in the object that was */
                                         /* passed                             */
                                         /* First, do we have a E_LAT?       */
-        if (lcdIfObj->E_LAT == (volatile unsigned int *) 0)
+        if (lcdIfObj->pbIfLcdEnObject->E_LAT == (volatile unsigned int *) 0)
         {
             goto cannot_create_if;
         }
                                         /* Do we have only one E_BIT?        */
         for (bitTest = 0x01, bitCount = 0; bitTest != 0x00; bitTest <<= 1)
         {
-            if (lcdIfObj->E_BIT & bitTest)
+            if (lcdIfObj->pbIfLcdEnObject->E_BIT & bitTest)
             {
                 bitCount++;
             }    
@@ -807,9 +807,9 @@ unsigned char lcdifWriteData(HLCDIF const hLcdIf, unsigned char data)
                                         /* Set data pins to outputs           */
             *hLcdIf->pbIfObject->DATA_TRIS &= ~hLcdIf->pbIfObject->DATA_MASK;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Clear data pins                    */
             *hLcdIf->pbIfObject->DATA_LAT &= ~hLcdIf->pbIfObject->DATA_MASK;
                                         /* Get low nibble of data             */
@@ -820,9 +820,9 @@ unsigned char lcdifWriteData(HLCDIF const hLcdIf, unsigned char data)
                                         /* Set desired data pins              */
             *hLcdIf->pbIfObject->DATA_LAT |= tempData;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Write data process finished        */
         }
         else
@@ -840,9 +840,9 @@ unsigned char lcdifWriteData(HLCDIF const hLcdIf, unsigned char data)
                                         /* Set data pins to outputs           */
             *hLcdIf->pbIfObject->DATA_TRIS = 0x00;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Write data process finished        */
         }    
                                         /* Inform caller that write succeeded */
@@ -907,19 +907,19 @@ unsigned char lcdifReadData(HLCDIF const hLcdIf, unsigned char * const data)
                                         /* Set data pins to inputs            */
             *hLcdIf->pbIfObject->DATA_TRIS |= hLcdIf->pbIfObject->DATA_MASK;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Read high nibble of data and shift */
                                         /* into low four bytes of tempData    */
             tempData = (*hLcdIf->pbIfObject->DATA_PORT & 
                                                 hLcdIf->pbIfObject->DATA_MASK);
             tempData >>= (startOfLcdIfObjs->lcdIfFlags & LCDIF_SHIFTDATAMASK);
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Shift data into high nibble of     */
                                         /* tempData                           */
             tempData <<= 4;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Read low nibble of data and add    */
                                         /* into low four bytes of tempData    */
             tempData2 = (*hLcdIf->pbIfObject->DATA_PORT& 
@@ -930,7 +930,7 @@ unsigned char lcdifReadData(HLCDIF const hLcdIf, unsigned char * const data)
                                         /* Give value read back to caller     */
             *data = tempData;    
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Read data process finished         */
         }
         else
@@ -946,12 +946,12 @@ unsigned char lcdifReadData(HLCDIF const hLcdIf, unsigned char * const data)
                                         /* Set data pins to inputs            */
             *hLcdIf->pbIfObject->DATA_TRIS = 0xFF;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Read high nibble of data and shift */
                                         /* into low four bytes of tempData    */
             tempData = *hLcdIf->pbIfObject->DATA_PORT;
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Give value read back to caller     */
             * data = tempData;          
                                         /* Read data process finished         */   
@@ -1025,9 +1025,9 @@ unsigned char lcdifWriteInstruction(HLCDIF const hLcdIf,
                                         /* Set data pins to outputs           */
             *hLcdIf->pbIfObject->DATA_TRIS &= ~hLcdIf->pbIfObject->DATA_MASK;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Clear data pins                    */
             *hLcdIf->pbIfObject->DATA_LAT &= ~hLcdIf->pbIfObject->DATA_MASK;
                                         /* Get low nibble of instruction      */
@@ -1039,9 +1039,9 @@ unsigned char lcdifWriteInstruction(HLCDIF const hLcdIf,
                                         /* Set desired data pins              */
             *hLcdIf->pbIfObject->DATA_LAT |= tempInstruction;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Write instruction process finished */
         }
         else
@@ -1059,9 +1059,9 @@ unsigned char lcdifWriteInstruction(HLCDIF const hLcdIf,
                                         /* Set data pins to outputs           */
             *hLcdIf->pbIfObject->DATA_TRIS = 0;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Write instruction process finished */
         }    
                                         /* Inform caller that write succeeded */
@@ -1127,7 +1127,7 @@ unsigned char lcdifReadAddress(HLCDIF const hLcdIf,
                                         /* Set data pins to inputs            */
             *hLcdIf->pbIfObject->DATA_TRIS |= hLcdIf->pbIfObject->DATA_MASK;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Read high nibble of address and    */
                                         /* shift into low four bytes of       */
                                         /* tempAddress                        */
@@ -1135,7 +1135,7 @@ unsigned char lcdifReadAddress(HLCDIF const hLcdIf,
                                                 hLcdIf->pbIfObject->DATA_MASK);
             tempAddress >>= startOfLcdIfObjs->lcdIfFlags & LCDIF_SHIFTDATAMASK;
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Check to see if nibbles need to be */
                                         /* swapped                            */
             if (!(hLcdIf->lcdIfFlags & LCDIF_FIXNIBBLESWAP))
@@ -1145,14 +1145,14 @@ unsigned char lcdifReadAddress(HLCDIF const hLcdIf,
                 tempAddress <<= 4;
             }
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Read low nibble of data and add    */
                                         /* into low four bytes of tempAddress */
             tempAddress2 = (*hLcdIf->pbIfObject->DATA_PORT & 
                                                 hLcdIf->pbIfObject->DATA_MASK);
             tempAddress2 >>= startOfLcdIfObjs->lcdIfFlags & LCDIF_SHIFTDATAMASK;
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
             if (!(hLcdIf->lcdIfFlags & LCDIF_FIXNIBBLESWAP))
             {
                                         /* Formulate whole address            */
@@ -1184,11 +1184,11 @@ unsigned char lcdifReadAddress(HLCDIF const hLcdIf,
                                         /* Set data pins to inputs            */
             *hLcdIf->pbIfObject->DATA_TRIS = 0xFF;
                                         /* Set E pin                          */
-            *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Read data                          */
             tempAddress = *hLcdIf->pbIfObject->DATA_PORT;
                                         /* Clear E pin                        */
-            *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+            *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Return address to caller           */
             *address = tempAddress;
                                         /* Read data process finished         */
@@ -1273,9 +1273,9 @@ unsigned char lcdif4BitFunctionSet(HLCDIF const hLcdIf,
                                         /* Set data pins to outputs           */
         *hLcdIf->pbIfObject->DATA_TRIS &= ~hLcdIf->pbIfObject->DATA_MASK;
                                         /* Set E pin                          */
-        *hLcdIf->E_LAT |= hLcdIf->E_BIT;
+        *hLcdIf->pbIfLcdEnObject->E_LAT |= hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Clear E pin                        */
-        *hLcdIf->E_LAT &= ~hLcdIf->E_BIT;
+        *hLcdIf->pbIfLcdEnObject->E_LAT &= ~hLcdIf->pbIfLcdEnObject->E_BIT;
                                         /* Write instruction process finished */
 
                                         /* Inform caller that write succeeded */
