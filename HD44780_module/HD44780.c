@@ -1391,7 +1391,8 @@ unsigned int hd44780InstructionInit(HHD44780 const  hHd44780,
                             hHd44780->hd44780Flags |= FUNCTIONSET2;
                         }
                         else if ((hd44780Clone == KS0066U) || 
-                                  (hd44780Clone == S6A0069))
+                                 (hd44780Clone == S6A0069) ||
+                                 (hd44780Clone == NT7603))
                         {
                                         /* Send two function set commands     */
                                         /* first 4-bit, second 8-bit          */
@@ -1402,8 +1403,16 @@ unsigned int hd44780InstructionInit(HHD44780 const  hHd44780,
                                               hHd44780->hLcdIf, 
                                               HD44780_FUNCTIONSET & FS_4BITBUS &
                                               functionSet);
+                            if (hd44780Clone == NT7603)
+                            {
+                                        /* Wait further 40us                  */
+                                returnValue = 40;
+                            }
+                            else
+                            {
                                         /* Wait further 39us                  */
-                            returnValue = 39;
+                                returnValue = 39;
+                            }
                                         /* Set up next state                  */
                             hHd44780->hd44780Flags &= ~HD44780_INSTRINITSTATE;
                             hHd44780->hd44780Flags |= DISPLAYONOFFCONTROL;
@@ -1450,7 +1459,7 @@ unsigned int hd44780InstructionInit(HHD44780 const  hHd44780,
                                         
                             if (hd44780Clone == NT7603)
                             {
-                                        /* Wait further 39us                  */
+                                        /* Wait further 40us                  */
                                 returnValue = 40;
                             }
                             else
