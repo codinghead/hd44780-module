@@ -99,12 +99,12 @@ typedef struct PBIFOBJTYPE {
 * Description:
 *   This decribes the object for the enable pin for an individual LCD interdace
 * It requires the following elements:
-* - The LAT register to which the EN pin is connected
-* - The bit number to which the EN pin is connected (counting up from 0)
+* - The LAT register to which the E pin is connected
+* - The bit number to which the E pin is connected (counting up from 0)
 *******************************************************************************/
 typedef struct PBIFLCDENOBJTYPE {
-    volatile unsigned int         * EN_LAT;
-    unsigned int                    EN_BIT;
+    volatile unsigned int         * E_LAT;
+    unsigned int                    E_BIT;
 } PBIFLCDENOBJ;
 
 
