@@ -17,12 +17,10 @@
 * Novatek NT7603
 *
 * Filename : HD44780.c
-* Version : V0.01
 * Programmer(s) : Stuart Cording aka CODINGHEAD
 * 
 ********************************************************************************
 * Note(s) : 
-* 4th July 2010 - V0.01 - First cut
 *
 *******************************************************************************/
 
@@ -36,13 +34,8 @@
 *                                 INCLUDE FILES
 *******************************************************************************/
 #include "HD44780.h"
-#if defined (__18CXX)
-    #include "lcdif_c18.h"
-    #include "pbif_c18.h"
-#elif defined (__PIC32MX__)
-    //#include "lcdif_c32.h"
-    //#include "pbif_c32.h"
-#endif
+
+
 /*******************************************************************************
 *                                 LOCAL DEFINES
 *******************************************************************************/
@@ -50,6 +43,14 @@
 /*******************************************************************************
 * Summary:
 *   Used to indicate that the chosen HD44780 object is open and in use
+* See also:
+*   <link hd44780Open>, <link hd44780Close>, <link hd44780ClearDisplay>,
+*   <link hd44780ReturnHome>, <link hd44780EntryModeSet>,
+*   <link hd44780DisplayControl>, <link hd44780ShiftControl>,
+*   <link hd44780FunctionSet>, <link hd44780SetCGRAMAddr>,
+*   <link hd44780SetCursorAddr>, <link hd44780ReadAddr>, <link hd44780WriteChar>,
+*   <link hd44780ReadChar>, <link hd44780WriteRAMString>,
+*   <link hd44780WriteCGRAM>, <link hd44780InstructionInit>
 *******************************************************************************/
 #define HD44780_OPEN                (0x01 << 7)
 
@@ -57,23 +58,87 @@
 * Summary:
 *   Used to mask the lower bits of the hd44780Flags element for use in the
 * instruction initialisation routine's state-machine
+* See also:
+*   <link hd44780InstructionInit>
 *******************************************************************************/
 #define HD44780_INSTRINITSTATE      (0x07)
 
 /*******************************************************************************
 * Summary:
-*   The following define the instructions for the HD44780. All bits which can
-* be used by the instruction can be set. The user clear the bits they wish to 
-* clear when calling the appropriate functions, except for instructions which 
-* require an address
+*   Defines the 'Clear Display' instruction for the HD44780
+* See also:
+*   <link hd44780ClearDisplay>, <link hd44780InstructionInit>
 *******************************************************************************/
 #define HD44780_CLEARDISPLAY            0x01
+
+/*******************************************************************************
+* Summary:
+*   Defines the 'Return Home' instruction for the HD44780
+* See also:
+*   <link hd44780ReturnHome>
+*******************************************************************************/
 #define HD44780_RETURNHOME              0x02
+
+/*******************************************************************************
+* Summary:
+*   Defines the 'Entry Mode Set' instruction for the HD44780. Bits 0 and 1 can
+* be cleared to define the mode setting (see HD44780 or clone data sheet)
+* See also:
+*   <link hd44780EntryModeSet>, <link hd44780InstructionInit>
+*******************************************************************************/
 #define HD44780_ENTRYMODESET            0x07
+
+/*******************************************************************************
+* Summary:
+*   Defines the 'Display On/Off Control' instruction for the HD44780. Bits 0, 1
+* and 2 can be cleared to define the mode setting (see HD44780 or clone data
+* sheet)
+* See also:
+*   <link hd44780DisplayControl>, <link hd44780InstructionInit>
+*******************************************************************************/
 #define HD44780_DISPLAYONOFFCONTROL     0x0F
+
+/*******************************************************************************
+* Summary:
+*   Defines the 'Cursor or Display Shift' instruction for the HD44780. Bits 2
+* and 3 can be cleared to define the mode setting (see HD44780 or clone data
+* sheet). Undefined bits in instruction are left at 0.
+* See also:
+*   <link hd44780ShiftControl>
+*******************************************************************************/
 #define HD44780_CURSORORDISPLAYSHIFT    0x1C
+
+/*******************************************************************************
+* Summary:
+*   Defines the 'Function Set' instruction for the HD44780. Bits 2, 3 and 4
+* can be cleared to define the mode setting (see HD44780 or clone data sheet).
+*  Undefined bits in instruction are left at 0.
+* See also:
+*   <link hd44780FunctionSet>, <link hd44780InstructionInit>
+*******************************************************************************/
 #define HD44780_FUNCTIONSET             0x3C
+
+/*******************************************************************************
+* Summary:
+*   Defines the 'Set CGRAM Address' instruction for the HD44780. Bits 0-5
+* are used to define the CGRAM address (see HD44780 or clone data sheet). The
+* CGRAM address defines which customisable character will be modified. Typically
+* the first 8 characters in the set (0x00 to 0x07) are customisable.
+* See also:
+*   <link hd44780SetCGRAMAddr>
+*******************************************************************************/
 #define HD44780_SETCGRAMADDRESS         0x7F
+
+/*******************************************************************************
+* Summary:
+*   Defines the 'Set DDRAM Address' instruction for the HD44780. Bits 0-6
+* can be used to define the DDRAM address (see HD44780 or clone data sheet).
+* The DDRAM address is the position where the cursor will be moved to on the LCD
+* screen. The position can then be written or read. The position of the cursor
+* may be beyond the viewable part of the screen.
+* See also:
+*   <link hd44780SetCursorAddr>
+*******************************************************************************/
 #define HD44780_SETDDRAMADDRESS         0xFF
 
 
