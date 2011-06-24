@@ -40,8 +40,8 @@
     #include "lcdif_c18.h"
     #include "pbif_c18.h"
 #elif defined (__PIC32MX__)
-    #include "lcdif_c32.h"
-    #include "pbif_c32.h"
+    //#include "lcdif_c32.h"
+    //#include "pbif_c32.h"
 #endif
 /*******************************************************************************
 *                                 LOCAL DEFINES
@@ -346,102 +346,94 @@ cannot_create_HD44780:
 * hd44780Destroy()
 *
 * Summary: 
-*   Destroys a previously created HD44780 object
+*   Destroys a previously created HD44780 object by removing it from the
+*   linked list. The HD44780 object must have already been closed, otherwise
+*   this call will fail.
 *
 * See also:
-*   hd44780Create()
+*   hd44780Create(), hd44780Close()
 *
 * Arguments: 
-*   lcdIfNumber - number of the LCD interface object to destroy 
+*   hd44780Number - number of the HD44780 interface object to destroy
 *
 * Returns: 
-*   - 1   - LCD interface was successfully destroyed
-*   - 0	  - couldn't detroy requested LCD interface - probably still open
+*   - HD44780_DESTROY_OK    - HD44780 interface was successfully destroyed
+*   - HD44780_DESTROY_FAIL  - couldn't detroy requested HD44780 interface -
+*                             reason is that it is probably still open
 *
 * Callers: 
 *   Main application code
 *
 * Notes : 
-*   1. lcdifCreate() must have been called prior to calling this function
+*   1. hd44780Create() must have been called prior to calling this function
+*   2. Destroying this object does not free the memory associated with the
+*      associated HD44780OBJ object
+*   3. An open HD44780 object cannot be destroyed. Such a case returns a FAIL
 *******************************************************************************/
 unsigned char hd44780Destroy(HD44780NUM hd44780Number)
 {
-    HD44780OBJ * localHd44780Obj;           /* Stores local copy of pointer to    */
+    HD44780OBJ * localHd44780Obj;       /* Stores local copy of pointer to    */
                                         /* linked list so we can insert next  */
                                         /* object in at the top               */
-    HD44780OBJ * tempHd44780Obj;            /* Temporary object pointer so we can */
+    HD44780OBJ * previousHd44780Obj;    /* Temporary object pointer so we can */
                                         /* remove an object from the list     */
-    unsigned int  interfaceNumber;      /* Used to calculate the interface    */
-                                        /* number to return to caller         */
-                                        
+
                                         /* Check that there are created       */
                                         /* objects                            */
     if(startOfHD44780Objs != (HD44780OBJ *) 0)
     {
-#if 0
-                                        /* Search through the list to find    */
-                                        /* this interface                     */
-        localLcdIfObj = startOfLcdIfObjs;
-
-                                        /* If this is the first object in the */
-                                        /* list and the object is not open,   */
-                                        /* simply remove it                   */
-        if (startOfLcdIfObjs->lcdIfNum == lcdIfNumber && 
-            !(localLcdIfObj->lcdIfFlags & LCDIF_OPEN))
+                                        /* Check if the first object in the   */
+                                        /* list is the one we are looking for */
+        if (startOfHD44780Objs->hd44780Num == hd44780Number)
         {
-            startOfLcdIfObjs = startOfLcdIfObjs->nextLcdIfObj;
-                                        /* Also note that we have one less    */
-                                        /* active LCD interface               */
-            activeLcdIfObjects &= ~lcdIfNumber;
-            return 1;
+                                        /* Simply copy where this object is   */
+                                        /* pointing to into the               */
+                                        /* startOfHD44780Objs                 */
+            startOfHD44780Objs = startOfHD44780Objs->nextHD44780Obj;
+                                        /* Clear this object's bit in the     */
+                                        /* active HD44780 objects variable    */
+            activeHD44780Objects &= ~hd44780Number;
+                                        /* Destroyed the desired object       */
+            return HD44780_DESTROY_OK;
         }
-                                        /* Otherwise if this object is still  */
-                                        /* open, return that is can't be      */
-                                        /* destroyed                          */
-        else if (startOfLcdIfObjs->lcdIfNum == lcdIfNumber &&
-                 (localLcdIfObj->lcdIfFlags & LCDIF_OPEN))
+                                        /* Otherwise loop through all the     */
+                                        /* objects until we find the right    */
+                                        /* one, if it is to be found at all   */
+        else if (startOfHD44780Objs->nextHD44780Obj != (HD44780OBJ *) 0)
         {
-            return 0;
-        }    
-                                        /* Otherwise parse through list of    */
-                                        /* objects until we find the object   */
-                                        /* or find no object with that number */
-        do
-        {
-                                        /* Save pointer to currect object in  */
-                                        /* case next object will be removed   */
-            tempLcdIfObj = localLcdIfObj;
-                                        /* Ensure that this object actually   */
-                                        /* points to another object and not   */
-                                        /* to NULL                            */
-            if(localLcdIfObj->nextLcdIfObj != (LCDIFOBJ *) 0)
+                                        /* Keep a copy of the pointer to this */
+                                        /* object                             */
+            previousHd44780Obj = startOfHD44780Objs;
+                                        /* Get next object in the list        */
+            localHd44780Obj = startOfHD44780Objs->nextHD44780Obj;
+                                        /* Loop through each item and check   */
+                                        /* until we find the one we are       */
+                                        /* searching for                      */
+            do
             {
-                                        /* Point to that next object in       */
-                                        /* list...                            */                          
-                localLcdIfObj = localLcdIfObj->nextLcdIfObj;
-                                        /* ...and see if it is the            */
-                                        /* interface we are searching for and */
-                                        /* that the interface is not open     */
-                if (localLcdIfObj->lcdIfNum == lcdIfNumber &&
-                   !(localLcdIfObj->lcdIfFlags && LCDIF_OPEN))
+                if (localHd44780Obj->hd44780Num == hd44780Number)
                 {
-                                        /* If so, remove this item from list  */
-                                        /* by pointing previous object to     */
-                                        /* where this object points           */
-                    tempLcdIfObj->nextLcdIfObj = localLcdIfObj->nextLcdIfObj;
-                                        /* Also note that we have one less    */
-                                        /* active LCD interface               */
-                    activeLcdIfObjects &= ~lcdIfNumber;
-                    return 1;
+                                        /* Remove this buffer from the list   */
+                    previousHd44780Obj->nextHD44780Obj =
+                                                localHd44780Obj->nextHD44780Obj;
+                                        /* Clear this object's bit in the     */
+                                        /* active HD44780 objects variable    */
+                    activeHD44780Objects &= ~hd44780Number;
+                                        /* Destroyed the desired object       */
+                    return HD44780_DESTROY_OK;
                 }
-            }    
-            
-        } while(localLcdIfObj->nextLcdIfObj != (LCDIFOBJ *) 0);
-#endif
+                else
+                {
+                                        /* That wasn't the one we were        */
+                                        /* looking for. Move to the next one  */
+                    previousHd44780Obj = localHd44780Obj;
+                    localHd44780Obj = localHd44780Obj->nextHD44780Obj;
+                }
+            } while (localHd44780Obj != (HD44780OBJ *) 0);
+        }
     }
-
-                                        /* Couldn't destroy interface         */
-    return 0;
+                                        /* Couldn't destroy object            */
+        return HD44780_DESTROY_FAIL;
 }
 
 /*******************************************************************************
