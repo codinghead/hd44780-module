@@ -1,4 +1,4 @@
-﻿; This is a Doc-O-Matic version 6.5.1.1382 project file.
+﻿; This is a Doc-O-Matic version 7.0.1.1645 project file.
 ; This file is maintained by Doc-O-Matic, do not edit manually.
 
 [AutoTexts]
@@ -38,6 +38,7 @@ File3=..\..\..\..\Program Files\Doc-O-Matic 6 Express\graphics\html_titlebkg.jpg
 ClearDirectoryBeforeExport=0
 HelpKind=2
 OutputDir=..\..\..\..\Documents and Settings\m91234\My Documents\Doc-O-Matic\output
+OutputXHTML=0
 TargetBOM=1
 TargetCodepage=utf-8
 
@@ -64,6 +65,14 @@ Help2PluginNamespace=0
 Help2PluginNamespaceName=MS.VSIPCC+
 Help2RegisterType=0
 Help2UnregisterNamespace=1
+Help3BookName=
+Help3Catalog=vs
+Help3Locale=en-us
+Help3PackageFilename=
+Help3Product=MyProduct
+Help3ProductVersion=100
+Help3RegisterBook=1
+Help3Vendor=MyCompany
 HelpCompiler=
 HTMLHelp2Filename=
 HTMLHelpDisplayFontScaleButton=0
@@ -97,6 +106,7 @@ File3=..\..\..\..\Program Files\Doc-O-Matic 6 Express\graphics\html_titlebkg.jpg
 ClearDirectoryBeforeExport=0
 HelpKind=1
 OutputDir=..\CHM
+OutputXHTML=0
 TargetBOM=1
 TargetCodepage=utf-8
 
@@ -123,6 +133,14 @@ Help2PluginNamespace=0
 Help2PluginNamespaceName=MS.VSIPCC+
 Help2RegisterType=0
 Help2UnregisterNamespace=1
+Help3BookName=
+Help3Catalog=vs
+Help3Locale=en-us
+Help3PackageFilename=
+Help3Product=MyProduct
+Help3ProductVersion=100
+Help3RegisterBook=1
+Help3Vendor=MyCompany
 HelpCompiler=C:\Program Files\HTML Help Workshop\hhc.exe
 HTMLHelp2Filename=
 HTMLHelpDisplayFontScaleButton=0
@@ -156,6 +174,7 @@ File3=..\..\..\..\Program Files\Doc-O-Matic 6 Express\graphics\html_titlebkg.jpg
 ClearDirectoryBeforeExport=1
 HelpKind=0
 OutputDir=..\DOM_HD44780
+OutputXHTML=0
 TargetBOM=1
 TargetCodepage=utf-8
 
@@ -182,6 +201,14 @@ Help2PluginNamespace=0
 Help2PluginNamespaceName=MS.VSIPCC+
 Help2RegisterType=0
 Help2UnregisterNamespace=1
+Help3BookName=
+Help3Catalog=vs
+Help3Locale=en-us
+Help3PackageFilename=
+Help3Product=MyProduct
+Help3ProductVersion=100
+Help3RegisterBook=1
+Help3Vendor=MyCompany
 HelpCompiler=
 HTMLHelp2Filename=
 HTMLHelpDisplayFontScaleButton=0
@@ -246,7 +273,7 @@ TrailerChars=-+~/#
 WallCharacters="#$%&'*+-/=@[\]^_`{|}~
 
 [Project File Info]
-Version=605
+Version=700
 
 [Section\0]
 Count=3
