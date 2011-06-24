@@ -568,7 +568,7 @@ HD44780NUM hd44780Close(HHD44780 const hHd44780)
 *   hHd44780            - handle to the open HD44780
 *
 * Returns: 
-*   - 1  	        - command was completed successfully
+*   - 1  	    - command was completed successfully
 *   - 0             - command couldn't complete (most likely bus busy)
 *
 * Callers: 
