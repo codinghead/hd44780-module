@@ -11,7 +11,6 @@
 * often used LCD driver.
 *
 * Filename : HD44780.h
-* Version : V0.01
 * Programmer(s) : Stuart Cording a.k.a. CODINGHEAD
 * 
 ********************************************************************************
@@ -61,7 +60,7 @@
 *   Entry Mode Set HD44780 Setting "CURSORMOVE" - cursor moves after each
 *   character is written
 * See also:
-*   hd44780EntryModeSet()
+*   <link hd44780EntryModeSet>
 *******************************************************************************/
 #define EMS_CURSORMOVE      0xFE
 
@@ -70,7 +69,7 @@
 *   Entry Mode Set HD44780 Setting "DISPLAYSHIFT" - displayed text moves after
 *   each character is written and cursor stays in current position
 * See also:
-*   hd44780EntryModeSet()
+*   <link hd44780EntryModeSet>
 *******************************************************************************/
 #define EMS_DISPLAYSHIFT    0xFF
 
@@ -79,7 +78,7 @@
 *   Entry Mode Set HD44780 Setting "DECREMENT" - cursor moves to the left after
 *   each character is written
 * See also:
-*   hd44780EntryModeSet()
+*   <link hd44780EntryModeSet>
 *******************************************************************************/
 #define EMS_DECREMENT       0xFD
 
@@ -88,7 +87,7 @@
 *   Entry Mode Set HD44780 Setting "INCREMENT" - cursor moves to the right after
 *   each character is written
 * See also:
-*   hd44780EntryModeSet()
+*   <link hd44780EntryModeSet>
 *******************************************************************************/
 #define EMS_INCREMENT       0xFF
 
@@ -97,7 +96,7 @@
 *   Display On/Off Control HD44780 Setting "BLINKINGOFF" - cursor blinking
 *   is switched off
 * See also:
-*   hd44780DisplayControl()
+*   <link hd44780DisplayControl>
 *******************************************************************************/
 #define DOFC_BLINKINGOFF    0xFE
 
@@ -106,7 +105,7 @@
 *   Display On/Off Control HD44780 Setting "BLINKINGON" - cursor blinking
 *   is switched on
 * See also:
-*   hd44780DisplayControl()
+*   <link hd44780DisplayControl>
 *******************************************************************************/
 #define DOFC_BLINKINGON     0xFF
 
@@ -115,7 +114,7 @@
 *   Display On/Off Control HD44780 Setting "CURSOROFF" - cursor is switched off
 *   making it invisible
 * See also:
-*   hd44780DisplayControl()
+*   <link hd44780DisplayControl>
 *******************************************************************************/
 #define DOFC_CURSOROFF      0xFD
 
@@ -124,7 +123,7 @@
 *   Display On/Off Control HD44780 Setting "CURSORON" - cursor is switched on
 *   making it visible
 * See also:
-*   hd44780DisplayControl()
+*   <link hd44780DisplayControl>
 *******************************************************************************/
 #define DOFC_CURSORON       0xFF
 
@@ -133,7 +132,7 @@
 *   Display On/Off Control HD44780 Setting "DISPLAYOFF" - entire display is
 *   turned off making its content invisible - text remains in SRAM
 * See also:
-*   hd44780DisplayControl()
+*   <link hd44780DisplayControl>
 *******************************************************************************/
 #define DOFC_DISPLAYOFF     0xFB
 
@@ -142,7 +141,7 @@
 *   Display On/Off Control HD44780 Setting "DISPLAYON" - entire display is
 *   turned on making its content visible. Any text in SRAM will be redisplayed
 * See also:
-*   hd44780DisplayControl()
+*   <link hd44780DisplayControl>
 *******************************************************************************/
 #define DOFC_DISPLAYON      0xFF
 
@@ -152,7 +151,7 @@
 *   the left, decrementing the Address Counter (AC). Does not change the content
 *   of the display
 * See also:
-*   hd44780ShiftControl()
+*   <link hd44780ShiftControl>
 *******************************************************************************/
 #define CODS_SHIFTLEFT      0xFB
 
@@ -162,7 +161,7 @@
 *   the right, incrementing the Address Counter (AC). Does not change the
 *   content of the display
 * See also:
-*   hd44780ShiftControl()
+*   <link hd44780ShiftControl>
 *******************************************************************************/
 #define CODS_SHIFTRIGHT     0xFF
 
@@ -171,7 +170,7 @@
 *   Cursor or Display Shift HD44780 Setting "CURSORMOVE" - only the cursor moves
 *   in the required direction
 * See also:
-*   hd44780ShiftControl()
+*   <link hd44780ShiftControl>
 *******************************************************************************/
 #define CODS_CURSORMOVE     0xF7
 
@@ -180,7 +179,7 @@
 *   Cursor or Display Shift HD44780 Setting "DISPLAYSHIFT" - content of display
 *   move in the required direction
 * See also:
-*   hd44780ShiftControl()
+*   <link hd44780ShiftControl>
 *******************************************************************************/
 #define CODS_DISPLAYSHIFT   0xFF
 
@@ -189,7 +188,7 @@
 *   Function Set HD44780 Setting "5X8DOTS" - defines character RAM dimension to
 *   5x8 pixels when creating own characters
 * See also:
-*   hd44780FunctionSet()
+*   <link hd44780FunctionSet>
 *******************************************************************************/
 #define FS_5X8DOTS          0xFD
 
@@ -198,7 +197,7 @@
 *   Function Set HD44780 Setting "5X10DOTS" - defines character RAM dimension to
 *   5x10 pixels when creating own characters
 * See also:
-*   hd44780FunctionSet()
+*   <link hd44780FunctionSet>
 *******************************************************************************/
 #define FS_5X10DOTS         0xFF
 
@@ -207,7 +206,7 @@
 *   Function Set HD44780 Setting "1LINE" - defines that the display has only a
 *   single line
 * See also:
-*   hd44780FunctionSet()
+*   <link hd44780FunctionSet>
 *******************************************************************************/
 #define FS_1LINE            0xF7
 
@@ -217,7 +216,7 @@
 *   lines, or that the LCD controller is reponsible for 2 lines of a 4-line
 *   LCD display
 * See also:
-*   hd44780FunctionSet()
+*   <link hd44780FunctionSet>
 *******************************************************************************/
 #define FS_2LINE            0xFF
 
@@ -226,7 +225,7 @@
 *   Function Set HD44780 Setting "4BITBUS" - defines that the display is
 *   connected to the host CPU/MCU via a 4-bit data bus
 * See also:
-*   hd44780FunctionSet()
+*   <link hd44780FunctionSet>
 *******************************************************************************/
 #define FS_4BITBUS          0xEF
 
@@ -235,7 +234,7 @@
 *   Function Set HD44780 Setting "8BITBUS" - defines that the display is
 *   connected to the host CPU/MCU via an 8-bit data bus
 * See also:
-*   hd44780FunctionSet()
+*   <link hd44780FunctionSet>
 *******************************************************************************/
 #define FS_8BITBUS          0xFF
 
@@ -243,7 +242,7 @@
 * Summary:
 *   This defines that the CGRAM font has 8 lines of data when creating new fonts
 * See also:
-*   hd44780WriteCGRAM()
+*   <link hd44780WriteCGRAM>,  <link hd44780ReadCGRAM>
 *******************************************************************************/
 #define CGRAMFONT_5X8       8
 
@@ -252,19 +251,23 @@
 *   This defines that the CGRAM font has 10 lines of data when creating new
 *   fonts
 * See also:
-*   hd44780ReadCGRAM()
+*   <link hd44780WriteCGRAM>, <link hd44780ReadCGRAM>
 *******************************************************************************/
 #define CGRAMFONT_5X10      10
 
 /*******************************************************************************
 * Summary:
 *   Signals that hd44780Destroy() failed to deallocate requested buffer object
+* See also:
+*   <link hd44780Deinit>
 *******************************************************************************/
 #define HD44780_DESTROY_FAIL         0x00
 
 /*******************************************************************************
 * Summary:
 *   Signals that hd44780Destroy() successfully deallocated requested object
+* See also:
+*   <link hd44780Deinit>
 *******************************************************************************/
 #define HD44780_DESTROY_OK           0x01
 
@@ -281,11 +284,26 @@
 typedef unsigned int HD44780NUM;
 
 /*******************************************************************************
-* New data type LCDIFFP                                                    
+* New data type LCDIFFP - LCD InterFace Function Pointers
 * Description:
 *   This structure allows the end user to store pointers to the functions
-* implemented in the LCD interface layer which abstracts this module from the
-* hardware interface being used
+*   implemented in the LCD interface layer which abstracts this module from the
+*   hardware interface being used. Members are:
+*   - *pGetBus          - Pointer to a function that aquires the bus mutex, if
+*                         available
+*   - *pReturnBus       - Pointer to function that returns the bus mutex when
+*                         finshed with the bus
+*   - *pWriteData       - Pointer to function that writes the desired data to
+*                         the data bus
+*   - *pReadData        - Pointer to function that reads data from the data bus
+*   - *pWriteIntr       - Pointer to function that writes an LCD controller
+*                         instruction to the data bus
+*   - *pReadAddr        - Pointer to function that reads the LCD controllers
+*                         address  register
+*   - *p4BitFunctionSet - Pointer to function that handles the extra single
+*                         4-bit write needed during the instruction
+*                         initialisation process (only required in 4-bit data
+*                         bus mode)
 *******************************************************************************/
 typedef struct LCDIFFPTYPE {
     unsigned char   (*pGetBus)          (HLCDIF const           hLcdIf);
@@ -306,7 +324,17 @@ typedef struct LCDIFFPTYPE {
 * New data type HD44780OBJ                                                    
 * Description:
 *   This is the main object for storing the context of the HD44780 LCD chipset
-* which is currently in use
+* which is currently in use. Members are:
+*   - hLcdIf                    - Handle to the LCD interface to which this
+*                                 HD44780 controller is connected
+*   - * lcdIfFunctionPointers   - Pointer to the functions that implement the
+*                                 low level access to the LCD data bus
+*   - hd44780Num                - The number assigned to this HD44780 controller
+*   - hd44780Flags              - Flags used by the module to keep track of the
+*                                 status of this HD44780 controller (private to
+*                                 this module)
+*   - *nextHD44780Obj           - Pointer to the next HD44780 object in the
+*                                 linked list
 *******************************************************************************/
 typedef struct HD44780OBJTYPE {
   HLCDIF                    hLcdIf;
