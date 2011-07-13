@@ -28,12 +28,27 @@
 /*******************************************************************************
 *                                 INCLUDE FILES
 *******************************************************************************/
+#if defined __PIC32MX__
 #include "lcdif_c32.h"
 #include "pbif_c32.h"
+#elif defined __18CXX
+#include "lcdif_c32.h"
+#include "pbif_c18.h"
+#endif
 
 /*******************************************************************************
 *                                 LOCAL DEFINES
 *******************************************************************************/
+
+/*******************************************************************************
+* Summary:
+*   Defines the data type for GPIO registers on target controller platform
+*******************************************************************************/
+#if defined __PIC32MX__
+#define REGISTER_DATA_TYPE volatile unsigned int
+#elif defined __18CXX
+#define REGISTER_DATA_TYPE volatile near unsigned char
+#endif
 
 /*******************************************************************************
 * Summary:
@@ -75,19 +90,19 @@
 *            will use an atomic bit test & set to indicate the bus is in use and
 *            not a subtraction as is used for the PIC18
 *******************************************************************************/
-#define PBIF_NOT_BUSY       0x00;
+#define PBIF_NOT_BUSY       0x00
 
 /*******************************************************************************
 * Summary:
 * Used to indicate that the LCD interface is in use from another task
 *******************************************************************************/
-#define LCDIF_BUSY          0;
+#define LCDIF_BUSY          0
 
 /*******************************************************************************
 * Summary:
 * Used to indicate that the LCD interface call was successful
 *******************************************************************************/
-#define LCDIF_SUCCESS       1;
+#define LCDIF_SUCCESS       1
 
 /*******************************************************************************
 *                                LOCAL CONSTANTS
@@ -137,13 +152,6 @@ extern void             pbifReturnBusMutex(unsigned int * pbIfFlag);
 /*******************************************************************************
 *                            LOCAL CONFIGURATION ERRORS
 *******************************************************************************/
-
-#if !defined(__PIC32MX__)
-#error This module requires the use of the C32 compiler.
-#error If you wish to use this code with another platform, search in the 
-#error directory where you found this file for a possible port.
-#error This file is currently saved here: __FILE__
-#endif
 
 
 /*******************************************************************************
@@ -252,7 +260,7 @@ LCDIFNUM lcdifCreate(LCDIFOBJ * const lcdIfObj)
                                         /* information in the object that was */
                                         /* passed                             */
                                         /* First, do we have a E_LAT?       */
-        if (lcdIfObj->pbIfLcdEnObject->E_LAT == (volatile unsigned int *) 0)
+        if (lcdIfObj->pbIfLcdEnObject->E_LAT == (REGISTER_DATA_TYPE *) 0)
         {
             goto cannot_create_if;
         }
@@ -335,27 +343,27 @@ LCDIFNUM lcdifCreate(LCDIFOBJ * const lcdIfObj)
             goto cannot_create_if;
         }    
                                         /* Do we have a RW_LAT?              */
-        if (lcdIfObj->pbIfObject->RW_LAT == (volatile unsigned int *) 0)
+        if (lcdIfObj->pbIfObject->RW_LAT == (REGISTER_DATA_TYPE *) 0)
         {
             goto cannot_create_if;
         }
                                         /* Do we have a RS_LAT?              */
-        if (lcdIfObj->pbIfObject->RS_LAT == (volatile unsigned int *) 0)
+        if (lcdIfObj->pbIfObject->RS_LAT == (REGISTER_DATA_TYPE *) 0)
         {
             goto cannot_create_if;
         }
                                         /* Do we have a DATA_PORT?            */
-        if (lcdIfObj->pbIfObject->DATA_PORT == (volatile unsigned int *) 0)
+        if (lcdIfObj->pbIfObject->DATA_PORT == (REGISTER_DATA_TYPE *) 0)
         {
             goto cannot_create_if;
         }
                                         /* Do we have a DATA_LAT?             */
-        if (lcdIfObj->pbIfObject->DATA_LAT == (volatile unsigned int *) 0)
+        if (lcdIfObj->pbIfObject->DATA_LAT == (REGISTER_DATA_TYPE *) 0)
         {
             goto cannot_create_if;
         }
                                         /* Do we have a DATA_TRIS?            */
-        if (lcdIfObj->pbIfObject->DATA_TRIS == (volatile unsigned int *) 0)
+        if (lcdIfObj->pbIfObject->DATA_TRIS == (REGISTER_DATA_TYPE *) 0)
         {
             goto cannot_create_if;
         }
