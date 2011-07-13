@@ -31,8 +31,8 @@
 *
 *******************************************************************************/
 
-#ifndef __LCDIFC32_MODULE_PRESENT__
-#define __LCDIFC32_MODULE_PRESENT__
+#ifndef __LCDIF_MODULE_PRESENT__
+#define __LCDIF_MODULE_PRESENT__
 
 /*******************************************************************************
 *                                 INCLUDE FILES
@@ -41,10 +41,16 @@
                                     /* Microchip C32 compiler                 */
                                     /******************************************/
 #if defined(__PIC32MX__)
-	// PIC32 processor
-	#include <p32xxxx.h>
-#endif
+/* PIC32 processor */
+#include <p32xxxx.h>
 #include "pbif_c32.h"
+                                    /******************************************/
+                                    /* Microchip C18 compiler                 */
+                                    /******************************************/
+#elif defined __18CXX
+#include <p18cxxx.h>
+#include "pbif_c18.h"
+#endif
 
 /*******************************************************************************
 *                                    EXTERNS
@@ -141,15 +147,11 @@ unsigned char   lcdif4BitFunctionSet(HLCDIF       const hLcdIf,
 
 unsigned char   lcdifGetPbBusWidth(HLCDIF         const hLcdIf);
 
+void            lcdifFixNibbleSwap(HLCDIF         const hLcdIf);
+
 /*******************************************************************************
 *                              CONFIGURATION ERRORS
 *******************************************************************************/
-#ifndef __PIC32MX__
-#error This module requires the use of the C32 compiler.
-#error If you wish to use this code with another platform, search in the 
-#error directory where you found this file for a possible port.
-#error This file is currently saved here: __FILE__
-#endif
 
 
 /*******************************************************************************
