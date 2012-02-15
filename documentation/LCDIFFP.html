@@ -1,0 +1,120 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>LCDIFFP Structure</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoad();" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element731">
+<div class="Element730">
+<a onclick="ToggleAllElements(&#39;46696C65,4465736372697074696F6E,47726F7570&#39;, &#39;linkToggleAllElements&#39;, &#39;imgToggleAllElements&#39;, &#39;Collapse All&#39;, &#39;Expand All&#39;);"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="imgToggleAllElements" /></a><a id="linkToggleAllElements" onclick="ToggleAllElements(&#39;46696C65,4465736372697074696F6E,47726F7570&#39;, &#39;linkToggleAllElements&#39;, &#39;imgToggleAllElements&#39;, &#39;Collapse All&#39;, &#39;Expand All&#39;);">Collapse All</a></div>
+</div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="33%">
+<div class="Element1">
+HD44780 Module</div>
+</td><td width="34%">
+<div class="Element2">
+<a href="contents.html"><img src="btn_globals_contents_black.gif" border="0" alt="Contents" title="Contents" onmouseover="switchImage(this, &#39;btn_globals_contents_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_globals_contents_black.gif&#39;);" /></a><a href="idx.html"><img src="btn_globals_index_black.gif" border="0" alt="Index" title="Index" onmouseover="switchImage(this, &#39;btn_globals_index_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_globals_index_black.gif&#39;);" /></a><a href="index.html"><img src="btn_globals_home_black.gif" border="0" alt="Home" title="Home" onmouseover="switchImage(this, &#39;btn_globals_home_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_globals_home_black.gif&#39;);" /></a></div>
+</td><td width="33%">
+<div class="Element90">
+<a href="HD44780OBJ.html"><img src="btn_prev_black.gif" border="0" alt="Previous" title="Previous" onmouseover="switchImage(this, &#39;btn_prev_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_prev_black.gif&#39;);" /></a><a href="!!RECORDS.html"><img src="btn_up_black.gif" border="0" alt="Up" title="Up" onmouseover="switchImage(this, &#39;btn_up_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_up_black.gif&#39;);" /></a><a href="LCDIFOBJ.html"><img src="btn_next_black.gif" border="0" alt="Next" title="Next" onmouseover="switchImage(this, &#39;btn_next_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_next_black.gif&#39;);" /></a></div>
+</td></tr></table><div class="Element5">
+LCDIFFP Structure</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<div class="Element58">
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+New data type LCDIFFP - LCD InterFace Function Pointers</p></div>
+</div>
+<div class="Element99">
+Syntax</div>
+<div class="Element910" style="border-top: 1px solid transparent;"><div class="Element917">C++</div></div><a name="432B2B"></a><div class="Element721" id="div53796E746178_0" style="display:block;clear:both;">
+<div class="Element101"><div class="Element100"><pre class="Element100"><strong><span style="color: #871F78;">typedef</span></strong> <strong><span style="color: #871F78;">struct</span></strong> <strong><span style="color: #660000;"><a href="LCDIFFPTYPE.html">LCDIFFPTYPE</a></span></strong> {
+  <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> (* <strong><span style="color: #660000;">pGetBus</span></strong>)(<a href="HLCDIF.html">HLCDIF</a> <strong><span style="color: #871F78;">const</span></strong> hLcdIf);
+  <strong><span style="color: #871F78;">void</span></strong> (* <strong><span style="color: #660000;">pReturnBus</span></strong>)(<a href="HLCDIF.html">HLCDIF</a> <strong><span style="color: #871F78;">const</span></strong> hLcdIf);
+  <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> (* <strong><span style="color: #660000;">pWriteData</span></strong>)(<a href="HLCDIF.html">HLCDIF</a> <strong><span style="color: #871F78;">const</span></strong> hLcdIf, <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> data);
+  <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> (* <strong><span style="color: #660000;">pReadData</span></strong>)(<a href="HLCDIF.html">HLCDIF</a> <strong><span style="color: #871F78;">const</span></strong> hLcdIf, <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> * <strong><span style="color: #871F78;">const</span></strong> data);
+  <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> (* <strong><span style="color: #660000;">pWriteInstr</span></strong>)(<a href="HLCDIF.html">HLCDIF</a> <strong><span style="color: #871F78;">const</span></strong> hLcdIf, <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> instr);
+  <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> (* <strong><span style="color: #660000;">pReadAddr</span></strong>)(<a href="HLCDIF.html">HLCDIF</a> <strong><span style="color: #871F78;">const</span></strong> hLcdIf, <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> * <strong><span style="color: #871F78;">const</span></strong> addr);
+  <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> (* <strong><span style="color: #660000;">p4BitFunctionSet</span></strong>)(<a href="HLCDIF.html">HLCDIF</a> <strong><span style="color: #871F78;">const</span></strong> hLcdIf, <strong><span style="color: #871F78;">unsigned</span></strong> <strong><span style="color: #871F78;">char</span></strong> instruction);
+} LCDIFFP;</pre></div></div>
+</div>
+<a name="46696C65"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;46696C65&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img46696C65" />File</a></div>
+<div id="div46696C65">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+<a href="HD44780_h.html">HD44780.h</a></p></div>
+</div>
+</div>
+<a name="4465736372697074696F6E"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;4465736372697074696F6E&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img4465736372697074696F6E" />Description</a></div>
+<div id="div4465736372697074696F6E">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+This structure allows the end user to store pointers to the functions implemented in the LCD interface layer which abstracts this module from the hardware interface being used. Members are:</p>
+<ul class="Element630">
+<li class="Element600">*pGetBus - Pointer to a function that aquires the bus mutex, if available</li>
+<li class="Element600">*pReturnBus - Pointer to function that returns the bus mutex when finshed with the bus</li>
+<li class="Element600">*pWriteData - Pointer to function that writes the desired data to the data bus</li>
+<li class="Element600">*pReadData - Pointer to function that reads data from the data bus</li>
+<li class="Element600">*pWriteIntr - Pointer to function that writes an LCD controller instruction to the data bus</li>
+<li class="Element600">*pReadAddr - Pointer to function that reads the LCD controllers address register</li>
+<li class="Element600">*p4BitFunctionSet - Pointer to function that handles the extra single 4-bit write needed during the instruction initialisation process (only required in 4-bit data bus mode)</li>
+</ul></div>
+</div>
+</div>
+<a name="47726F7570"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;47726F7570&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img47726F7570" />Group</a></div>
+<div id="div47726F7570">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+<a href="!!RECORDS.html">Structs, Records, Enums</a></p></div>
+</div>
+</div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="100%">
+<div class="Element3">
+</div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+<div class="Element950">
+<p><a href="http://www.doc-o-matic.com" target="_blank">Made with Doc-O-Matic® Express</a></p><p><a href="http://www.doc-o-matic.com" target="_blank"><img src="doc-o-matic_button.gif" border="0" alt="Doc-O-Matic" title="Doc-O-Matic" /></a></p></div>
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

@@ -1,0 +1,495 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>HD44780.h</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoad();" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element731">
+<div class="Element730">
+<a onclick="ToggleAllElements(&#39;47726F7570,456E756D65726174696F6E73,53747275637475726573,46756E6374696F6E73,5479706573,4D6163726F73&#39;, &#39;linkToggleAllElements&#39;, &#39;imgToggleAllElements&#39;, &#39;Collapse All&#39;, &#39;Expand All&#39;);"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="imgToggleAllElements" /></a><a id="linkToggleAllElements" onclick="ToggleAllElements(&#39;47726F7570,456E756D65726174696F6E73,53747275637475726573,46756E6374696F6E73,5479706573,4D6163726F73&#39;, &#39;linkToggleAllElements&#39;, &#39;imgToggleAllElements&#39;, &#39;Collapse All&#39;, &#39;Expand All&#39;);">Collapse All</a></div>
+</div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="33%">
+<div class="Element1">
+HD44780 Module</div>
+</td><td width="34%">
+<div class="Element2">
+<a href="contents.html"><img src="btn_globals_contents_black.gif" border="0" alt="Contents" title="Contents" onmouseover="switchImage(this, &#39;btn_globals_contents_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_globals_contents_black.gif&#39;);" /></a><a href="idx.html"><img src="btn_globals_index_black.gif" border="0" alt="Index" title="Index" onmouseover="switchImage(this, &#39;btn_globals_index_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_globals_index_black.gif&#39;);" /></a><a href="index.html"><img src="btn_globals_home_black.gif" border="0" alt="Home" title="Home" onmouseover="switchImage(this, &#39;btn_globals_home_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_globals_home_black.gif&#39;);" /></a></div>
+</td><td width="33%">
+<div class="Element90">
+<a href="HD44780_c.html"><img src="btn_prev_black.gif" border="0" alt="Previous" title="Previous" onmouseover="switchImage(this, &#39;btn_prev_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_prev_black.gif&#39;);" /></a><a href="!!FILES.html"><img src="btn_up_black.gif" border="0" alt="Up" title="Up" onmouseover="switchImage(this, &#39;btn_up_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_up_black.gif&#39;);" /></a><a href="lcdif_c32_c.html"><img src="btn_next_black.gif" border="0" alt="Next" title="Next" onmouseover="switchImage(this, &#39;btn_next_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_next_black.gif&#39;);" /></a></div>
+</td></tr></table><div class="Element5">
+HD44780.h</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<div class="Element58">
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+HD44780 ALPHANUMERIC LCD DRIVER MODULE</p></div>
+</div>
+<a name="456E756D65726174696F6E73"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;456E756D65726174696F6E73&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img456E756D65726174696F6E73" />Enumerations</a></div>
+<div id="div456E756D65726174696F6E73">
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element200" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element201">
+ &#160;</div></td><td class="Element200" valign="top" width="30%">
+<div class="Element201">
+Name&#160;</div></td><td class="Element204" valign="top" width="60%">
+<div class="Element205">
+Description&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_enum.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="HD44780CLONETYPE.html">HD44780CLONETYPE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type HD44780CLONE&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="HD44780CLONE.html">HD44780CLONE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type HD44780CLONE&#160;</div></td></tr></table></div></div>
+</div>
+</div>
+</div>
+<a name="46756E6374696F6E73"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;46756E6374696F6E73&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img46756E6374696F6E73" />Functions</a></div>
+<div id="div46756E6374696F6E73">
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element200" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element201">
+ &#160;</div></td><td class="Element200" valign="top" width="30%">
+<div class="Element201">
+Name&#160;</div></td><td class="Element204" valign="top" width="60%">
+<div class="Element205">
+Description&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780ClearDisplay@HHD44780_const.html">hd44780ClearDisplay</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780ClearDisplay()<br />Clear the display&#39;s content&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780Close@HHD44780_const.html">hd44780Close</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780Close()<br />Closes an HD44780 LCD and releases the handle to it&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780Create@HLCDIF_const@LCDIFFP___const@HD44780OBJ___const.html">hd44780Create</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780Create()<br />Creates an HD44780 LCD for use by this module&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780Deinit.html">hd44780Deinit</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780Deinit()<br />Deinitialises the HD44780 module&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780Destroy@HD44780NUM.html">hd44780Destroy</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780Destroy()<br />Destroys a previously created HD44780 object by removing it from the linked list. The HD44780 object must have already been closed, otherwise this call will fail.&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780DisplayControl@HHD44780_const@unsigned_char.html">hd44780DisplayControl</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780DisplayControl()<br />Send the Display On/Off Control command to LCD&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780EntryModeSet@HHD44780_const@unsigned_char.html">hd44780EntryModeSet</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780EntryModeSet()<br />Send the Entry Mode command to LCD&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780FunctionSet@HHD44780_const@unsigned_char.html">hd44780FunctionSet</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780FunctionSet()<br />Send the Function Set command to LCD&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780Init.html">hd44780Init</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780Init()<br />Initialises the HD44780 module for first use&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780InstructionInit@HHD44780_const@HD44780CLONE@unsigned_char@unsigned_char@unsigned_char.html">hd44780InstructionInit</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780InstructionInit(()<br />Closes an LCD interface and releases the handle to it&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780Open@HD44780NUM.html">hd44780Open</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifOpen()<br />Opens an LCD interface for use by caller and initialises an HLCDIF handle to it&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780ReadAddr@HHD44780_const@unsigned_char__.html">hd44780ReadAddr</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780ReadAddr()<br />Reads the current address being pointed to. If the most recent &quot;Set Address&quot; command set a CGRAM address, the CGRAM address will be returned. If the most recent &quot;Set Address&quot; command set a DDRAM (cursor) address, the DDRAM (cursor) address will be returned. It is not possible to determine which address is being returned.&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780ReadCGRAM@HHD44780_const@unsigned_char__@unsigned_char.html">hd44780ReadCGRAM</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+This is function hd44780ReadCGRAM.&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780ReadChar@HHD44780_const@unsigned_char__.html">hd44780ReadChar</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780ReadChar()<br />Read a single character from the HD44780. Assumes that the most recent &quot;Set Address&quot; command was to a DDRAM (cursor) address&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780ReturnHome@HHD44780_const.html">hd44780ReturnHome</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780ReturnHome()<br />Return cursor to home position&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780SetCGRAMAddr@HHD44780_const@unsigned_char.html">hd44780SetCGRAMAddr</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780SetCGRAMAddr()<br />Set the address to write the next Character Graphics RAM (CGRAM) data&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780SetCursorAddr@HHD44780_const@unsigned_char.html">hd44780SetCursorAddr</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780SetCursorAddr()<br />Set the address of the cursor to where the next character will be written to the LCD; also known as setting the Display Data RAM (DDRAM) address&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780ShiftControl@HHD44780_const@unsigned_char.html">hd44780ShiftControl</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780ShiftControl()<br />Send the Shift Control command to LCD&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780WriteCGRAM@HHD44780_const@unsigned_char__@unsigned_char.html">hd44780WriteCGRAM</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780WriteCGRAM()<br />Write a string of data to the display. The string itself must lie in SRAM on a Harvard architecture PIC controller (everything but PIC32)&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780WriteChar@HHD44780_const@unsigned_char.html">hd44780WriteChar</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780WriteChar()<br />Send a single character to the HD44780&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="hd44780WriteRAMString@HHD44780_const@unsigned_char__.html">hd44780WriteRAMString</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+hd44780WriteRAMString()<br />Write a string of data to the display. The string itself must lie in SRAM on a Harvard architecture PIC controller (everything but PIC32)&#160;</div></td></tr></table></div></div>
+</div>
+</div>
+</div>
+<a name="47726F7570"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;47726F7570&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img47726F7570" />Group</a></div>
+<div id="div47726F7570">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+<a href="!!FILES.html">Files</a></p></div>
+</div>
+</div>
+<a name="4D6163726F73"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;4D6163726F73&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img4D6163726F73" />Macros</a></div>
+<div id="div4D6163726F73">
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element200" valign="top" width="40%">
+<div class="Element201">
+Name&#160;</div></td><td class="Element204" valign="top" width="60%">
+<div class="Element205">
+Description&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="__HD44780_MODULE_PRESENT__.html">__HD44780_MODULE_PRESENT__</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+HD44780 ALPHANUMERIC LCD DRIVER MODULE&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="CGRAMFONT_5X10.html">CGRAMFONT_5X10</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+This defines that the CGRAM font has 10 lines of data when creating new fonts&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="CGRAMFONT_5X8.html">CGRAMFONT_5X8</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+This defines that the CGRAM font has 8 lines of data when creating new fonts&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="CODS_CURSORMOVE.html">CODS_CURSORMOVE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Cursor or Display Shift HD44780 Setting &quot;CURSORMOVE&quot; - only the cursor moves in the required direction&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="CODS_DISPLAYSHIFT.html">CODS_DISPLAYSHIFT</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Cursor or Display Shift HD44780 Setting &quot;DISPLAYSHIFT&quot; - content of display move in the required direction&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="CODS_SHIFTLEFT.html">CODS_SHIFTLEFT</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Cursor or Display Shift HD44780 Setting &quot;SHIFTLEFT&quot; - moves the cursor to the left, decrementing the Address Counter (AC). Does not change the content of the display&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="CODS_SHIFTRIGHT.html">CODS_SHIFTRIGHT</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Cursor or Display Shift HD44780 Setting &quot;SHIFTRIGHT&quot; - moves the cursor to the right, incrementing the Address Counter (AC). Does not change the content of the display&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="DOFC_BLINKINGOFF.html">DOFC_BLINKINGOFF</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Display On/Off Control HD44780 Setting &quot;BLINKINGOFF&quot; - cursor blinking is switched off&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="DOFC_BLINKINGON.html">DOFC_BLINKINGON</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Display On/Off Control HD44780 Setting &quot;BLINKINGON&quot; - cursor blinking is switched on&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="DOFC_CURSOROFF.html">DOFC_CURSOROFF</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Display On/Off Control HD44780 Setting &quot;CURSOROFF&quot; - cursor is switched off making it invisible&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="DOFC_CURSORON.html">DOFC_CURSORON</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Display On/Off Control HD44780 Setting &quot;CURSORON&quot; - cursor is switched on making it visible&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="DOFC_DISPLAYOFF.html">DOFC_DISPLAYOFF</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Display On/Off Control HD44780 Setting &quot;DISPLAYOFF&quot; - entire display is turned off making its content invisible - text remains in SRAM&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="DOFC_DISPLAYON.html">DOFC_DISPLAYON</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Display On/Off Control HD44780 Setting &quot;DISPLAYON&quot; - entire display is turned on making its content visible. Any text in SRAM will be redisplayed&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="EMS_CURSORMOVE.html">EMS_CURSORMOVE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Entry Mode Set HD44780 Setting &quot;CURSORMOVE&quot; - cursor moves after each character is written&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="EMS_DECREMENT.html">EMS_DECREMENT</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Entry Mode Set HD44780 Setting &quot;DECREMENT&quot; - cursor moves to the left after each character is written&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="EMS_DISPLAYSHIFT.html">EMS_DISPLAYSHIFT</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Entry Mode Set HD44780 Setting &quot;DISPLAYSHIFT&quot; - displayed text moves after each character is written and cursor stays in current position&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="EMS_INCREMENT.html">EMS_INCREMENT</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Entry Mode Set HD44780 Setting &quot;INCREMENT&quot; - cursor moves to the right after each character is written&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="FS_1LINE.html">FS_1LINE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Function Set HD44780 Setting &quot;1LINE&quot; - defines that the display has only a single line&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="FS_2LINE.html">FS_2LINE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Function Set HD44780 Setting &quot;2LINE&quot; - defines that the display has two lines, or that the LCD controller is reponsible for 2 lines of a 4-line LCD display&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="FS_4BITBUS.html">FS_4BITBUS</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Function Set HD44780 Setting &quot;4BITBUS&quot; - defines that the display is connected to the host CPU/MCU via a 4-bit data bus&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="FS_5X10DOTS.html">FS_5X10DOTS</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Function Set HD44780 Setting &quot;5X10DOTS&quot; - defines character RAM dimension to 5x10 pixels when creating own characters&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="FS_5X8DOTS.html">FS_5X8DOTS</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Function Set HD44780 Setting &quot;5X8DOTS&quot; - defines character RAM dimension to 5x8 pixels when creating own characters&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="FS_8BITBUS.html">FS_8BITBUS</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Function Set HD44780 Setting &quot;8BITBUS&quot; - defines that the display is connected to the host CPU/MCU via an 8-bit data bus&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="HD44780_DESTROY_FAIL.html">HD44780_DESTROY_FAIL</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Signals that hd44780Destroy() failed to deallocate requested buffer object&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="HD44780_DESTROY_OK.html">HD44780_DESTROY_OK</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+Signals that hd44780Destroy() successfully deallocated requested object&#160;</div></td></tr></table></div></div>
+</div>
+</div>
+</div>
+<a name="53747275637475726573"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;53747275637475726573&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img53747275637475726573" />Structures</a></div>
+<div id="div53747275637475726573">
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element200" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element201">
+ &#160;</div></td><td class="Element200" valign="top" width="30%">
+<div class="Element201">
+Name&#160;</div></td><td class="Element204" valign="top" width="60%">
+<div class="Element205">
+Description&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_structure.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="HD44780OBJTYPE.html">HD44780OBJTYPE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type HD44780OBJ&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_structure.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="LCDIFFPTYPE.html">LCDIFFPTYPE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type LCDIFFP - LCD InterFace Function Pointers&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="HD44780OBJ.html">HD44780OBJ</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type HD44780OBJ&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="LCDIFFP.html">LCDIFFP</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type LCDIFFP - LCD InterFace Function Pointers&#160;</div></td></tr></table></div></div>
+</div>
+</div>
+</div>
+<a name="5479706573"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;5479706573&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img5479706573" />Types</a></div>
+<div id="div5479706573">
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element200" valign="top" width="40%">
+<div class="Element201">
+Name&#160;</div></td><td class="Element204" valign="top" width="60%">
+<div class="Element205">
+Description&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="HD44780NUM.html">HD44780NUM</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type HD44780NUM&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="HHD44780.html">HHD44780</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type HHD44780&#160;</div></td></tr></table></div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="100%">
+<div class="Element3">
+</div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+<div class="Element950">
+<p><a href="http://www.doc-o-matic.com" target="_blank">Made with Doc-O-Matic® Express</a></p><p><a href="http://www.doc-o-matic.com" target="_blank"><img src="doc-o-matic_button.gif" border="0" alt="Doc-O-Matic" title="Doc-O-Matic" /></a></p></div>
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

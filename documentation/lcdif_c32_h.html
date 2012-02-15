@@ -1,0 +1,296 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>lcdif_c32.h</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoad();" onmousedown="onBodyMouseDown();">
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element731">
+<div class="Element730">
+<a onclick="ToggleAllElements(&#39;47726F7570,53747275637475726573,46756E6374696F6E73,5479706573,4D6163726F73&#39;, &#39;linkToggleAllElements&#39;, &#39;imgToggleAllElements&#39;, &#39;Collapse All&#39;, &#39;Expand All&#39;);"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="imgToggleAllElements" /></a><a id="linkToggleAllElements" onclick="ToggleAllElements(&#39;47726F7570,53747275637475726573,46756E6374696F6E73,5479706573,4D6163726F73&#39;, &#39;linkToggleAllElements&#39;, &#39;imgToggleAllElements&#39;, &#39;Collapse All&#39;, &#39;Expand All&#39;);">Collapse All</a></div>
+</div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="33%">
+<div class="Element1">
+HD44780 Module</div>
+</td><td width="34%">
+<div class="Element2">
+<a href="contents.html"><img src="btn_globals_contents_black.gif" border="0" alt="Contents" title="Contents" onmouseover="switchImage(this, &#39;btn_globals_contents_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_globals_contents_black.gif&#39;);" /></a><a href="idx.html"><img src="btn_globals_index_black.gif" border="0" alt="Index" title="Index" onmouseover="switchImage(this, &#39;btn_globals_index_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_globals_index_black.gif&#39;);" /></a><a href="index.html"><img src="btn_globals_home_black.gif" border="0" alt="Home" title="Home" onmouseover="switchImage(this, &#39;btn_globals_home_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_globals_home_black.gif&#39;);" /></a></div>
+</td><td width="33%">
+<div class="Element90">
+<a href="lcdif_c32_c.html"><img src="btn_prev_black.gif" border="0" alt="Previous" title="Previous" onmouseover="switchImage(this, &#39;btn_prev_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_prev_black.gif&#39;);" /></a><a href="!!FILES.html"><img src="btn_up_black.gif" border="0" alt="Up" title="Up" onmouseover="switchImage(this, &#39;btn_up_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_up_black.gif&#39;);" /></a><a href="pbif_c18_h.html"><img src="btn_next_black.gif" border="0" alt="Next" title="Next" onmouseover="switchImage(this, &#39;btn_next_black_hover.gif&#39;);" onmouseout="switchImage(this, &#39;btn_next_black.gif&#39;);" /></a></div>
+</td></tr></table><div class="Element5">
+lcdif_c32.h</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<div class="Element58">
+<a name="53756D6D617279"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+LCD INTERFACE MODULE FOR C32 COMPILER AND PIC32</p></div>
+</div>
+<a name="46756E6374696F6E73"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;46756E6374696F6E73&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img46756E6374696F6E73" />Functions</a></div>
+<div id="div46756E6374696F6E73">
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element200" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element201">
+ &#160;</div></td><td class="Element200" valign="top" width="30%">
+<div class="Element201">
+Name&#160;</div></td><td class="Element204" valign="top" width="60%">
+<div class="Element205">
+Description&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdif4BitFunctionSet@HLCDIF_const@unsigned_char.html">lcdif4BitFunctionSet</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdif4BitFunctionSet()<br />Writes a 4-bit instruction to the LCD interface. This is required as part of the software initialisation sequence. In the event that the hardware power-on reset doesn&#39;t reset the chipset, a &quot;software initialisation&quot; is required. All researched chipsets (Hitachi, Sitronix and Samsung), when using a 4-bit data bus, require that the first bus access after power on be a function set instruction but only passing the high nibble. Depending on the data sheet you read, the DL (data length) bit may need to be 1 or 0 *even though* the bus is only 4-bits wide. Subsequent accesses to the... <a href="lcdif4BitFunctionSet@HLCDIF_const@unsigned_char.html">more</a>&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifClose@HLCDIF_const.html">lcdifClose</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifClose()<br />Closes an LCD interface and releases the handle to it&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifCreate@LCDIFOBJ___const.html">lcdifCreate</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifCreate()<br />Creates an LCD interface for use by this module&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifDeinit.html">lcdifDeinit</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifDeinit()<br />Deinitialises the LCDIFC32 module for first use&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifDestroy@LCDIFNUM.html">lcdifDestroy</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifDestroy()<br />Destroys a previously created LCD interface object&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifFixNibbleSwap@HLCDIF_const.html">lcdifFixNibbleSwap</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifFixNibbleSwap()<br />For use with an LCDIF that has been opened. During development it was noted that some LCD modules returned the nibbles of data during a &quot;ReadAddress&quot; in the reverse order to that defined in the datasheet or during a &quot;ReadData&quot; command. Calling this function ensures that &quot;ReadAddress&quot; commands work correctly with such LCD module. If, when using the HD44780 Module, you cannot write more than eight characters to the LCD display, you probably have an LCD display with this nibble-swap issue.&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifGetPb@HLCDIF_const.html">lcdifGetPb</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifGetPb()<br />Attempts to aquire the peripheral bus for use by the LCD interface module&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifGetPbBusWidth@HLCDIF_const.html">lcdifGetPbBusWidth</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifGetPbBusWidth()<br />Returns the width of the parallel data bus. This is necessary so that the upper layer can correctly issue the &quot;Initialising by Instruction&quot; sequence which is different depending on the data bus width in use&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifInit.html">lcdifInit</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+FUNCTION PROTOTYPES<br />lcdifInit()<br />Deinitialises the LCDIFC32 module after use&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifOpen@LCDIFNUM.html">lcdifOpen</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifOpen()<br />Opens an LCD interface for use by caller and initialises an HLCDIF handle to it&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifReadAddress@HLCDIF_const@unsigned_char___const.html">lcdifReadAddress</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifReadAddress()<br />Reads address counter value and busy flag&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifReadData@HLCDIF_const@unsigned_char___const.html">lcdifReadData</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifReadData()<br />Reads data from the LCD interface. The data read will be the contents of a CGRAM address if the previous instruction set a CGRAM address. If the previous instruction set a DDRAM address, the DDRAM address will be read&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifReturnPb@HLCDIF_const.html">lcdifReturnPb</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifReturnPb()<br />Returns the peripheral bus for use by other modules&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifWriteData@HLCDIF_const@unsigned_char.html">lcdifWriteData</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifWriteData()<br />Writes data to the LCD interface&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_method.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="lcdifWriteInstruction@HLCDIF_const@unsigned_char.html">lcdifWriteInstruction</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+lcdifWriteInstruction()<br />Writes an instruction to the LCD interface&#160;</div></td></tr></table></div></div>
+</div>
+</div>
+</div>
+<a name="47726F7570"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;47726F7570&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img47726F7570" />Group</a></div>
+<div id="div47726F7570">
+<div class="Element11">
+<div class="Element10">
+<p class="Element10">
+<a href="!!FILES.html">Files</a></p></div>
+</div>
+</div>
+<a name="4D6163726F73"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;4D6163726F73&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img4D6163726F73" />Macros</a></div>
+<div id="div4D6163726F73">
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element200" valign="top" width="40%">
+<div class="Element201">
+Name&#160;</div></td><td class="Element204" valign="top" width="60%">
+<div class="Element205">
+Description&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="__LCDIF_MODULE_PRESENT__.html">__LCDIF_MODULE_PRESENT__</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+LCDIFC32 MODULE&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="BUS4BITSWIDE.html">BUS4BITSWIDE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+This is used by the lcdifGetBusWidth function to tell upper layer the width of the data bus. This is required for the &quot;Initialising by Instruction&quot; process&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="BUS8BITSWIDE.html">BUS8BITSWIDE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+This is macro BUS8BITSWIDE.&#160;</div></td></tr></table></div></div>
+</div>
+</div>
+</div>
+<a name="53747275637475726573"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;53747275637475726573&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img53747275637475726573" />Structures</a></div>
+<div id="div53747275637475726573">
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element200" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element201">
+ &#160;</div></td><td class="Element200" valign="top" width="30%">
+<div class="Element201">
+Name&#160;</div></td><td class="Element204" valign="top" width="60%">
+<div class="Element205">
+Description&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+<img src="indicator_structure.gif" border="0" alt="" title="" />&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="LCDIFOBJTYPE.html">LCDIFOBJTYPE</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type LCDIFOBJTYPE&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="10%" style="white-space: nowrap;">
+<div class="Element203">
+&#160;</div></td><td class="Element202" valign="top" width="30%">
+<div class="Element203">
+<a href="LCDIFOBJ.html">LCDIFOBJ</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type LCDIFOBJTYPE&#160;</div></td></tr></table></div></div>
+</div>
+</div>
+</div>
+<a name="5479706573"></a><div class="Element14">
+<a onclick="toggleVisibilityStored(&#39;5479706573&#39;);" class="a_Element14"><img src="btn_collapse_2.gif" border="0" alt="" title="" id="img5479706573" />Types</a></div>
+<div id="div5479706573">
+<div class="Element11">
+<div class="Element10">
+<div class="Element212">
+<div class="TableDiv">
+<table cellspacing="0" class="Table0">
+<tr>
+<td class="Element200" valign="top" width="40%">
+<div class="Element201">
+Name&#160;</div></td><td class="Element204" valign="top" width="60%">
+<div class="Element205">
+Description&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="HLCDIF.html">HLCDIF</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type HLCDIF&#160;</div></td></tr><tr>
+<td class="Element202" valign="top" width="40%">
+<div class="Element203">
+<a href="LCDIFNUM.html">LCDIFNUM</a>&#160;</div></td><td class="Element206" valign="top" width="60%">
+<div class="Element207">
+New data type LCDIFNUM&#160;</div></td></tr></table></div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="100%">
+<div class="Element3">
+</div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+<div class="Element950">
+<p><a href="http://www.doc-o-matic.com" target="_blank">Made with Doc-O-Matic® Express</a></p><p><a href="http://www.doc-o-matic.com" target="_blank"><img src="doc-o-matic_button.gif" border="0" alt="Doc-O-Matic" title="Doc-O-Matic" /></a></p></div>
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>
